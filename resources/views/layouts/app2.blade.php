@@ -207,47 +207,49 @@
                         <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
                             <?php
                             $url = $_SERVER['PHP_SELF'];
-                           /*  echo $url; */
-                                  
+                            /*  echo $url; */
                             ?>
 
-                               @if ($url === "/index.php/main-menu") 
-                               <form method="POST" action="{{'main-menu' }}">
-                                @csrf
-                                    <div class="navbar-nav align-items-center">
-                                        <div class="nav-item d-flex align-items-center">
-                                            <i class="bx bx-search fs-4 lh-0"></i>
-                                            <input type="text" class="form-control border-0 shadow-none" name="search"
-                                            placeholder="ค้นหาเมนูหลัก" aria-label="Search..." />
-                                            <button type="submit" class="btn btn-sm btn-outline-primary">ค้นหา</button>
-                                        </div>
-                                    </div>
-                               </form>
-                                @elseif($url === "/index.php/sub-menu") 
-                                <form method="POST" action="{{'sub-menu' }}">
+                            @if ($url === '/index.php/main-menu')
+                                <form method="POST" action="{{ 'main-menu' }}">
                                     @csrf
                                     <div class="navbar-nav align-items-center">
                                         <div class="nav-item d-flex align-items-center">
                                             <i class="bx bx-search fs-4 lh-0"></i>
-                                            <input type="text" class="form-control border-0 shadow-none" name="search"
-                                            placeholder="ค้นหาเมนูย่อย" aria-label="Search..." />
-                                            <button type="submit" class="btn btn-sm btn-outline-primary">ค้นหา</button>
+                                            <input type="text" class="form-control border-0 shadow-none"
+                                                name="search" placeholder="ค้นหาเมนูหลัก" aria-label="Search..." />
+                                            <button type="submit"
+                                                class="btn btn-sm btn-outline-primary">ค้นหา</button>
                                         </div>
                                     </div>
                                 </form>
-                                @elseif ($url === "/index.php/home") 
-                                <form method="POST" action="{{'home'}}">
+                            @elseif($url === '/index.php/sub-menu')
+                                <form method="POST" action="{{ 'sub-menu' }}">
                                     @csrf
                                     <div class="navbar-nav align-items-center">
                                         <div class="nav-item d-flex align-items-center">
                                             <i class="bx bx-search fs-4 lh-0"></i>
-                                            <input type="text" class="form-control border-0 shadow-none" name="search"
-                                            placeholder="ค้นหาสินค้า" aria-label="Search..." />
-                                            <button type="submit" class="btn btn-sm btn-outline-primary">ค้นหา</button>
+                                            <input type="text" class="form-control border-0 shadow-none"
+                                                name="search" placeholder="ค้นหาเมนูย่อย" aria-label="Search..." />
+                                            <button type="submit"
+                                                class="btn btn-sm btn-outline-primary">ค้นหา</button>
                                         </div>
                                     </div>
                                 </form>
-                                @endif
+                            @elseif ($url === '/index.php/home')
+                                <form method="POST" action="{{ 'home' }}">
+                                    @csrf
+                                    <div class="navbar-nav align-items-center">
+                                        <div class="nav-item d-flex align-items-center">
+                                            <i class="bx bx-search fs-4 lh-0"></i>
+                                            <input type="text" class="form-control border-0 shadow-none"
+                                                name="search" placeholder="ค้นหาสินค้า" aria-label="Search..." />
+                                            <button type="submit"
+                                                class="btn btn-sm btn-outline-primary">ค้นหา</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            @endif
                             <!-- Search -->
 
                             <div class="navbar-nav align-items-center">
@@ -266,52 +268,57 @@
                                     <a class="github-button" href="#" data-icon="octicon-star"
                                         data-size="large" data-show-count="true"
                                         aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">จำนวนสินค้าทั้งหมด
-                                        369</a>
+                                        {{ Cookie::get('count_product') }}</a>
                                 </li>
-
-                                <!-- User -->
-                                <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
-                                        data-bs-toggle="dropdown">
-                                        <div class="avatar avatar-online">
-                                            <img src="../assets2/img/avatars/1.png" alt
-                                                class="w-px-40 h-auto rounded-circle" />
-                                        </div>
-                                    </a>
-                                    <ul class="dropdown-menu dropdown-menu-end">
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                <div class="d-flex">
-                                                    <div class="flex-shrink-0 me-3">
-                                                        <div class="avatar avatar-online">
-                                                            <img src="../assets2/img/avatars/1.png" alt
-                                                                class="w-px-40 h-auto rounded-circle" />
+                                @guest
+                                    @if (Route::has('login'))
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="login-id" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                        </li>
+                                    @endif
+                                @else
+                                    <!-- User -->
+                                    <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                                        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
+                                            data-bs-toggle="dropdown">
+                                            <div class="avatar avatar-online">
+                                                <img src="../assets2/img/avatars/1.png" alt
+                                                    class="w-px-40 h-auto rounded-circle" />
+                                            </div>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-end">
+                                            <li>
+                                                <a class="dropdown-item" href="#">
+                                                    <div class="d-flex">
+                                                        <div class="flex-shrink-0 me-3">
+                                                            <div class="avatar avatar-online">
+                                                                <img src="../assets2/img/avatars/1.png" alt
+                                                                    class="w-px-40 h-auto rounded-circle" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex-grow-1">
+                                                            <span class="fw-semibold d-block">
+                                                                {{ Auth::user()->username }}</span>
+                                                            <small class="text-muted">Admin</small>
                                                         </div>
                                                     </div>
-                                                    <div class="flex-grow-1">
-                                                        <span class="fw-semibold d-block">
-                                                            {{ Auth::user()->username }}</span>
-                                                        <small class="text-muted">Admin</small>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                                onclick="event.preventDefault();
-                                         document.getElementById('logout-form').submit();">
-                                                <i class="bx bx-power-off me-2"></i>
-                                                <span class="align-middle">Log Out</span>
-                                            </a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                                class="d-none">
-                                                @csrf
-                                            </form>
-
-                                        </li>
-                                    </ul>
-                                </li>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                                    <i class="bx bx-power-off me-2"></i>
+                                                    <span class="align-middle">Log Out</span>
+                                                </a>
+                                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                                    class="d-none">
+                                                    @csrf
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                @endguest
                                 <!--/ User -->
                             </ul>
                         </div>
@@ -378,6 +385,7 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
 </body>
 
 </html>

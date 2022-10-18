@@ -7,6 +7,7 @@ use DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Add_Product;
 use Illuminate\Support\Str;
+use Cookie;
 
 class AddProductController extends Controller
 {
@@ -15,6 +16,11 @@ class AddProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index(Request $request) {
         $search =  $request->search;
          $menus = DB::table('add__products');
@@ -36,6 +42,8 @@ class AddProductController extends Controller
             ->select('main__menus.main_menu','add__products.*')
             ->paginate(100);
          }
+        
+         Cookie::queue('count_product',  $menus->count());
 
         return view('add_product.index', ['menus' => $menus]);
     }
