@@ -14,10 +14,18 @@ class Main_MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search =  $request->search;
+
+        
         $menus = DB::table('main__menus')
-        ->paginate(100);
+        ->orWhere('main_menu', 'like', "$search%");
+        if ($search) {
+            $menus = $menus->get();
+        }else{
+            $menus =  $menus->paginate(100); 
+        }
         return view('menu.main_menu.index',['menus' => $menus] );
     }
 
@@ -48,7 +56,7 @@ class Main_MenuController extends Controller
         $member->main_menu = $request['main_menu'];
         $member->save();
 
-        return redirect('main-menu')->with('message', "เพิ่ม เมนู ".$request['main_menu']." เรียบร้อย" );
+        return redirect('create-main-menu')->with('message', "เพิ่ม เมนู ".$request['main_menu']." เรียบร้อย" );
     }
 
     /**
@@ -106,9 +114,9 @@ class Main_MenuController extends Controller
             }
         }
         
-      
+        $name = $flight->main_menu;
     /*     $data->delete(); */
 
-        return redirect('main-menu')->with('message', "ลบ เมนู เรียบร้อย" );
+        return redirect('main-menu')->with('message', "ลบ เมนู  $name เรียบร้อย" );
     }
 }

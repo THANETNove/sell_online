@@ -10,6 +10,7 @@
                         <div class="col-sm-12">
                             <div class="card-body">
                                 <h5 class="card-title text-primary">เมนูย่อย 🎉 </h5>
+                                
                                 @php
                                     $i = 0;
                                 @endphp
@@ -55,7 +56,13 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                            {{ $menus->links() }}
+                                             <br>
+                                             <?php
+                                                $url_GET =  $_SERVER['REQUEST_METHOD'];
+                                            ?>
+                                            @if ($url_GET === "GET")
+                                            {!! $menus->links() !!}
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

@@ -41,7 +41,8 @@
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="../assets2/js/config.js"></script>
-{{--     @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    {{--     @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
 </head>
 
 <body>
@@ -53,7 +54,7 @@
 
                 <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
                     <div class="app-brand demo">
-                        <a href="{{url('/home')}}" class="app-brand-link">
+                        <a href="{{ url('/home') }}" class="app-brand-link">
                             <span class="app-brand-logo demo">
                                 <svg width="25" viewBox="0 0 25 42" version="1.1"
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -115,7 +116,7 @@
                     <ul class="menu-inner py-1">
                         <!-- Dashboard -->
                         <li class="menu-item active">
-                            <a href="{{url('/home')}}" class="menu-link">
+                            <a href="{{ url('/home') }}" class="menu-link">
                                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                                 <div data-i18n="Analytics">Dashboard</div>
                             </a>
@@ -130,22 +131,22 @@
                             </a>
                             <ul class="menu-sub">
                                 <li class="menu-item">
-                                    <a href="{{url('/main-menu')}}" class="menu-link">
+                                    <a href="{{ url('/main-menu') }}" class="menu-link">
                                         <div data-i18n="Connections">หมวดหมู่สินค้าหลัก</div>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="{{url('/create-main-menu')}}" class="menu-link">
+                                    <a href="{{ url('/create-main-menu') }}" class="menu-link">
                                         <div data-i18n="Account">เพิ่มหมวดหมู่สินค้าหลัก</div>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="{{url('/sub-menu')}}" class="menu-link">
+                                    <a href="{{ url('/sub-menu') }}" class="menu-link">
                                         <div data-i18n="Notifications">หมวดหมู่สินค้าย่อย</div>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="{{url('/create-sub-menu')}}" class="menu-link">
+                                    <a href="{{ url('/create-sub-menu') }}" class="menu-link">
                                         <div data-i18n="Notifications">เพิ่มหมวดหมู่สินค้าย่อย</div>
                                     </a>
                                 </li>
@@ -158,12 +159,12 @@
                             </a>
                             <ul class="menu-sub">
                                 <li class="menu-item">
-                                    <a href="auth-login-basic.html" class="menu-link" target="_blank">
+                                    <a href="{{ url('/home') }}" class="menu-link">
                                         <div data-i18n="Basic">สินค้า</div>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="auth-register-basic.html" class="menu-link" target="_blank">
+                                    <a href="{{ url('/create-peoduct') }}" class="menu-link">
                                         <div data-i18n="Basic">เพิ่ม</div>
                                     </a>
                                 </li>
@@ -176,12 +177,12 @@
                             </a>
                             <ul class="menu-sub">
                                 <li class="menu-item">
-                                    <a href="{{url('/admin')}}" class="menu-link">
+                                    <a href="{{ url('/admin') }}" class="menu-link">
                                         <div data-i18n="Error">Admin</div>
                                     </a>
                                 </li>
                                 <li class="menu-item">
-                                    <a href="{{url("/register")}}" class="menu-link">
+                                    <a href="{{ url('/register') }}" class="menu-link">
                                         <div data-i18n="Under Maintenance">เพิ่ม Admin</div>
                                     </a>
                                 </li>
@@ -204,31 +205,68 @@
                         </div>
 
                         <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                            <?php
+                            $url = $_SERVER['PHP_SELF'];
+                           /*  echo $url; */
+                                  
+                            ?>
+
+                               @if ($url === "/index.php/main-menu") 
+                               <form method="POST" action="{{'main-menu' }}">
+                                @csrf
+                                    <div class="navbar-nav align-items-center">
+                                        <div class="nav-item d-flex align-items-center">
+                                            <i class="bx bx-search fs-4 lh-0"></i>
+                                            <input type="text" class="form-control border-0 shadow-none" name="search"
+                                            placeholder="ค้นหาเมนูหลัก" aria-label="Search..." />
+                                            <button type="submit" class="btn btn-sm btn-outline-primary">ค้นหา</button>
+                                        </div>
+                                    </div>
+                               </form>
+                                @elseif($url === "/index.php/sub-menu") 
+                                <form method="POST" action="{{'sub-menu' }}">
+                                    @csrf
+                                    <div class="navbar-nav align-items-center">
+                                        <div class="nav-item d-flex align-items-center">
+                                            <i class="bx bx-search fs-4 lh-0"></i>
+                                            <input type="text" class="form-control border-0 shadow-none" name="search"
+                                            placeholder="ค้นหาเมนูย่อย" aria-label="Search..." />
+                                            <button type="submit" class="btn btn-sm btn-outline-primary">ค้นหา</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                @elseif ($url === "/index.php/home") 
+                                <form method="POST" action="{{'home'}}">
+                                    @csrf
+                                    <div class="navbar-nav align-items-center">
+                                        <div class="nav-item d-flex align-items-center">
+                                            <i class="bx bx-search fs-4 lh-0"></i>
+                                            <input type="text" class="form-control border-0 shadow-none" name="search"
+                                            placeholder="ค้นหาสินค้า" aria-label="Search..." />
+                                            <button type="submit" class="btn btn-sm btn-outline-primary">ค้นหา</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                @endif
                             <!-- Search -->
-                            <div class="navbar-nav align-items-center">
-                                <div class="nav-item d-flex align-items-center">
-                                    <i class="bx bx-search fs-4 lh-0"></i>
-                                    <input type="text" class="form-control border-0 shadow-none"
-                                        placeholder="ค้นหาสินค้า" aria-label="Search..." />
-                                        <button href="#" class="btn btn-sm btn-outline-primary">ค้นหา</button>
-                                </div>
-                            </div>
+
                             <div class="navbar-nav align-items-center">
                                 <div class="nav-item d-flex ">
-                                 {{--    <i class="bx bx-search fs-4 lh-0"></i> --}}
-                                    <a style="color:#696cff;font-size: 18px">&nbsp;&nbsp;&nbsp;&nbsp;{{ Session::get('message') }}</a>
+                                    {{--    <i class="bx bx-search fs-4 lh-0"></i> --}}
+                                    <a
+                                        style="color:#696cff;font-size: 18px">&nbsp;&nbsp;&nbsp;&nbsp;{{ Session::get('message') }}</a>
                                 </div>
                             </div>
-                            
+
                             <!-- /Search -->
 
                             <ul class="navbar-nav flex-row align-items-center ms-auto">
                                 <!-- Place this tag where you want the button to render. -->
                                 <li class="nav-item lh-1 me-3">
-                                    <a class="github-button"
-                                        href="#"
-                                        data-icon="octicon-star" data-size="large" data-show-count="true"
-                                        aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">จำนวนสินค้าทั้งหมด   369</a>
+                                    <a class="github-button" href="#" data-icon="octicon-star"
+                                        data-size="large" data-show-count="true"
+                                        aria-label="Star themeselection/sneat-html-admin-template-free on GitHub">จำนวนสินค้าทั้งหมด
+                                        369</a>
                                 </li>
 
                                 <!-- User -->
@@ -251,7 +289,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="flex-grow-1">
-                                                        <span class="fw-semibold d-block"> {{ Auth::user()->username }}</span>
+                                                        <span class="fw-semibold d-block">
+                                                            {{ Auth::user()->username }}</span>
                                                         <small class="text-muted">Admin</small>
                                                     </div>
                                                 </div>
@@ -293,20 +332,13 @@
                                     document.write(new Date().getFullYear());
                                 </script>
                                 , made with ❤️ by
-                                <a href="https://themeselection.com" target="_blank"
-                                    class="footer-link fw-bolder">ThemeSelection</a>
+                                <a href="{{ url('https://line.me/R/ti/p/@883kwbfl') }}" target="_blank"
+                                    class="footer-link fw-bolder">@dutyfreetee</a>
                             </div>
                             <div>
-                                <a href="https://themeselection.com/license/" class="footer-link me-4"
-                                    target="_blank">License</a>
-                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">More
-                                    Themes</a>
 
-                                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                                    target="_blank" class="footer-link me-4">Documentation</a>
-
-                                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                                    target="_blank" class="footer-link me-4">Support</a>
+                                <a href="{{ url('https://line.me/R/ti/p/@883kwbfl') }}" target="_blank"
+                                    class="footer-link me-4">สอบถามเพิ่มเติม LINE ID : @dutyfreetee</a>
                             </div>
                         </div>
                     </footer>

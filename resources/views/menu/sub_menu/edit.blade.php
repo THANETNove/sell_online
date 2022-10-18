@@ -9,7 +9,7 @@
                     <div class="d-flex align-items-end row">
                         <div class="col-sm-7 col-lg-12 mb-12">
                             <div class="card-body">
-                                <h5 class="card-title text-primary">เเก้ไข เมนูย่อย 🎉</h5>
+                                <h5 class="card-title text-primary">เเก้ไข เมนูย่อย 🎉  <span style="float:right;"> <a href="{{url('/sub-menu')}}" class="btn btn-sm btn-outline-primary">ย้อนกลับ</a></span></h5>
                                 <form method="POST" action="{{url('update-sub_menu',$sub->id)}}">
                                     @csrf
                                     @method('PUT')

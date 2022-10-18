@@ -13,12 +13,20 @@ class Sub_MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search =  $request->search;
         $menus = DB::table('sub__menus')
         ->leftJoin('main__menus', 'sub__menus.id_main_menu', '=', 'main__menus.id')
         ->select('main__menus.id','main__menus.main_menu','sub__menus.id','sub__menus.id_main_menu','sub__menus.sub_menu')
-        ->paginate(100);
+        ->orWhere('sub_menu', 'like', "$search%")
+        ->orWhere('main_menu', 'like', "$search%");
+   
+        if ($search) {
+            $menus = $menus->get();
+        }else{
+            $menus =  $menus->paginate(100); 
+        }
         return view('menu.sub_menu.index',['menus'=>$menus]);
     }
 
@@ -52,7 +60,7 @@ class Sub_MenuController extends Controller
         $member->sub_menu = $request['sub_menu'];
         $member->save();
 
-        return redirect('sub-menu')->with('message', "เพิ่ม เมนู ".$request['sub_menu']." เรียบร้อย" );
+        return redirect('create-sub-menu')->with('message', "เพิ่ม เมนู ".$request['sub_menu']." เรียบร้อย" );
     }
 
     /**
@@ -108,6 +116,7 @@ class Sub_MenuController extends Controller
     {
         $flight = Sub_Menu::find($id); //ลบภาพในdb
         $flight->delete();
-        return redirect('sub-menu')->with('message', "ลบ เมนู เรียบร้อย" );
+        $name = $flight->sub_menu;
+        return redirect('sub-menu')->with('message', "ลบ เมนู $name เรียบร้อย" );
     }
 }

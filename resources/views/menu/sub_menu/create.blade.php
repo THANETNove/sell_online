@@ -9,7 +9,7 @@
                     <div class="d-flex align-items-end row">
                         <div class="col-sm-7 col-lg-12 mb-12">
                             <div class="card-body">
-                                <h5 class="card-title text-primary">เพิ่ม เมนูย่อย 🎉</h5>
+                                <h5 class="card-title text-primary">เพิ่ม เมนูย่อย 🎉  <span style="float:right;"> <a href="{{url('/sub-menu')}}" class="btn btn-sm btn-outline-primary">เมนูย่อย ทั้งหมด</a></span></h5>
                                 <form method="POST" action="{{'new-sub_menu'}}">
                                     @csrf
             
