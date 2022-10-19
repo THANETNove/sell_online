@@ -21,9 +21,11 @@ return new class extends Migration
             $table->string('price');
             $table->text('name_details')->nullable();
             $table->text('name_details_more')->nullable();
-            $table->string('product_home');
             $table->string('status_product');
-            $table->string('images');
+            $table->string('discount')->nullable();
+            $table->string('price_discount')->nullable();
+            $table->string('images')->nullable();
+            $table->string('images_home')->nullable();
             $table->timestamps();
         });
     }

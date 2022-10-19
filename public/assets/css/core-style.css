@@ -998,7 +998,7 @@ img {
       margin-bottom: 15px; }
     .single-products-catagory .hover-content p {
       font-size: 16px;
-      color: #6d6d6d;
+      color: #000000;
       line-height: 1;
       margin-bottom: 5px;
       -webkit-transition-duration: 250ms;
@@ -1011,12 +1011,14 @@ img {
     opacity: 1;
     visibility: visible; }
   .single-products-catagory:hover .hover-content p,
-  .single-products-catagory:hover .hover-content h4, .single-products-catagory:focus .hover-content p,
+  .single-products-catagory:hover .hover-content h5, .single-products-catagory:focus .hover-content p,
   .single-products-catagory:focus .hover-content h4 {
-    color: #fff; }
+    color: #fff; 
+}
 
 /* :: 6.0 Newsletter Area CSS */
 .newsletter-area {
+
   position: relative;
   z-index: 1;
   background-color: #3c3c3c; }

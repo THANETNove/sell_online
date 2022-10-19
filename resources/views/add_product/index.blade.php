@@ -23,11 +23,13 @@
                                                         <th>id</th>
                                                         <th>ชื่อสินค้า</th>
                                                         <th>ราคา</th>
+                                                        <th>ราคาที่ลดเเล้ว</th>
+                                                        <th>เปอร์เซ็น ที่ลด</th>
                                                         <th>เมนูหลัก</th>
                                                         <th>เมนูย่อย</th>
                                                         <th>สถานะ</th>
-                                                        <th>สินค้าใน HOME</th>
-                                                        <th>ภาพสินค้า</th>
+                                                        <th>ภาพสินค้าหน้า Shop</th>
+                                                        <th>ภาพสินค้าหน้า Home </th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
@@ -38,6 +40,8 @@
                                                             <td> {{ ++$i }}</td>
                                                             <td>{{ $menu->product_name }}</td>
                                                             <td>{{ $menu->price }}</td>
+                                                            <td>{{ $menu->price_discount }}</td>
+                                                            <td>{{ $menu->discount }}</td>
                                                             <td><span
                                                                     class="badge bg-label-primary me-1">{{ $menu->main_menu }}</span>
                                                             </td>
@@ -59,17 +63,14 @@
                                                                 @endif
                                                             </td>
                                                             <td>
-                                                                @if ($menu->product_home === 'Yes')
-                                                                    <span
-                                                                        class="badge bg-label-primary me-1">{{ $menu->product_home }}</span>
-                                                                @else
-                                                                    {{ $menu->product_home }}
-                                                                @endif
-
-                                                            </td>
-                                                            <td>
                                                                 <img src="{{ URL::asset('/images/product/' . '' . $menu->images) }}"
                                                                     height="90px" width="80px">
+                                                            </td>
+                                                            <td>
+                                                                @if($menu->images_home)
+                                                                <img src="{{ URL::asset('/images/home/' . '' . $menu->images_home) }}"
+                                                                    height="90px" width="80px">
+                                                                @endif
                                                             </td>
                                                             <td>
                                                                 <div class="dropdown">

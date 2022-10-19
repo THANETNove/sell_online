@@ -16,8 +16,10 @@ class Add_Product extends Model
         'price',
         'name_details',
         'name_details_more',
-        'product_home',
+        'images_home',
         'status_product',
+        'discount',
+        'price_discount',
         'images'
     ];
 }

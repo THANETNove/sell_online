@@ -59,10 +59,38 @@
                                         <label for="price"
                                             class="col-md-4 col-form-label text-md-end">{{ __('ราคาสินค้า') }}</label>
                                         <div class="col-md-6">
-                                            <input id="#" type="number"
+                                            <input id="#" type="text"
                                                 class="form-control @error('price') is-invalid @enderror" name="price"
                                                 value="{{$product->price }}" required autocomplete="ราคาสินค้า" placeholder="ราคาสินค้า"  autofocus>
                                             @error('price')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="discount"
+                                            class="col-md-4 col-form-label text-md-end">{{ __('ส่วนลด %') }}</label>
+                                        <div class="col-md-6">
+                                            <input id="#" type="text"
+                                                class="form-control @error('discount') is-invalid @enderror" name="discount"
+                                                value="{{ old('discount') }}"  autocomplete="ส่วนลด %" placeholder="ส่วนลด %"  autofocus>
+                                            @error('discount')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="price_discount"
+                                            class="col-md-4 col-form-label text-md-end">{{ __('ราคาที่ลดเเล้ว') }}</label>
+                                        <div class="col-md-6">
+                                            <input id="#" type="text"
+                                                class="form-control @error('price_discount') is-invalid @enderror" name="price_discount"
+                                                value="{{ old('price_discount') }}"  autocomplete="ราคาที่ลดเเล้ว" placeholder="ราคาที่ลดเเล้ว"  autofocus>
+                                            @error('price_discount')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -97,24 +125,6 @@
                                     </div>
                                     <div class="row mb-3">
                                         <label for="sub_menu"
-                                            class="col-md-4 col-form-label text-md-end">{{ __('เพิ่มสินค้าใน Index') }}</label>
-                                        <div class="col-md-6">
-                                            <select id="product_home" class="form-select form-select-lg"
-                                                name="product_home">
-                                                @if ($product->product_home === "Yes")
-                                                    <option value="Yes" selected>Yes</option>
-                                                    <option value="NO">NO</option>
-                                                @else
-                                                    <option value="Yes">Yes</option>
-                                                    <option value="NO" selected>NO</option>
-                                                @endif
-                                               
-                                                
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="sub_menu"
                                             class="col-md-4 col-form-label text-md-end">{{ __('สถานะสินค้า') }}</label>
                                         <div class="col-md-6">
                                             <select id="product_home" class="form-select form-select-lg"
@@ -140,14 +150,42 @@
                                     </div>
                                     <div class="row mb-3">
                                         <label for="images"
-                                            class="col-md-4 col-form-label text-md-end">{{ __('รูปภาพ (PNG,JPEG,JPG)') }}</label>
+                                            class="col-md-4 col-form-label text-md-end">{{ __('รูปภาพ Shop (PNG,JPEG,JPG) *') }}</label>
                                         <div class="col-md-6">
-                                            <input class="form-control @error('image') is-invalid @enderror" type="file" id="formFile" name="image" >
+                                            <input class="form-control @error('image') is-invalid @enderror" type="file" id="formFile" name="image">
                                             @error('image')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }} (PNG,JPEG,JPG)</strong>
                                                 </span>
                                             @enderror
+                                            <h6 style="color:#F08080;margin-top: 10px;">ขนาด ภาพ ที่ เเนะนำสำหรับ หน้า Shop   ภาพขนาด&nbsp;723*747<br></h6>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="image_home"
+                                            class="col-md-4 col-form-label text-md-end">{{ __('รูปภาพ Home (PNG,JPEG,JPG)') }}</label>
+                                        <div class="col-md-6">
+                                            <input class="form-control @error('image_home') is-invalid @enderror" type="file" id="formFile" name="image_home">
+                                            @error('image_home')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }} (PNG,JPEG,JPG)</strong>
+                                                </span>
+                                            @enderror
+                                            <h6 style="color:#F08080;margin-top: 10px;">ขนาด ภาพ ที่ เเนะนำสำหรับ หน้า Home <br>
+                                                <br>
+                                                ภาพที่&nbsp;1.&nbsp;&nbsp;ขนาด&nbsp;533*533<br>
+                                                ภาพที่&nbsp;2.&nbsp;&nbsp;ขนาด&nbsp;533*757<br>
+                                                ภาพที่&nbsp;3.&nbsp;&nbsp;ขนาด&nbsp;489*435<br>
+                                                ภาพที่&nbsp;4.&nbsp;&nbsp;ขนาด&nbsp;489*453<br>
+                                                ภาพที่&nbsp;5.&nbsp;&nbsp;ขนาด&nbsp;533*533<br>
+                                                ภาพที่&nbsp;6.&nbsp;&nbsp;ขนาด&nbsp;533*475<br>
+                                                ภาพที่&nbsp;7.&nbsp;&nbsp;ขนาด&nbsp;533*757<br>
+                                                ภาพที่&nbsp;8.&nbsp;&nbsp;ขนาด&nbsp;533*641<br>
+                                                ภาพที่&nbsp;9.&nbsp;&nbsp;ขนาด&nbsp;533*475<br><br>
+                                                ถ้าต้องใส่ภาพมากกว่านี้ ให้วนอีกรอบ เช่น 
+                                                <br>ภาพที่&nbsp;10&nbsp;&nbsp;ขนาดเท่ากับภาพที่&nbsp;&nbsp;1 
+                                                <br>ภาพที่&nbsp;11&nbsp;ขนาดเท่ากับภาพขนาดที่&nbsp;&nbsp;2 
+                                            </h6>
                                         </div>
                                     </div>
                                     <div class="row mb-0">

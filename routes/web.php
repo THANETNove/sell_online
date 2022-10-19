@@ -1,5 +1,5 @@
 <?php
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\addAdminController;
@@ -7,6 +7,7 @@ use App\Http\Controllers\Main_MenuController;
 use App\Http\Controllers\Sub_MenuController;
 use App\Http\Controllers\AddProductController;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,16 +20,66 @@ use Illuminate\Support\Facades\DB;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $products = DB::table('add__products')
+        ->get();
+    return view('welcome',['products' => $products]);
 });
 Route::get('/shop', function () {
     $menus = DB::table('main__menus')
-  ->get();
-  $submenus = DB::table('sub__menus')
-  ->get();
+        ->get();
+    $submenus = DB::table('sub__menus')
+        ->get();
+    $products = DB::table('add__products')
+        ->paginate(100);
 
-    return view('shop',['menus' => $menus,'submenus'=> $submenus]);
+    return view('shop',['menus' => $menus,'submenus'=> $submenus,'products' => $products]);
 });
+
+Route::get('/search/{name}', function ($name) {
+
+    $menus = DB::table('main__menus')
+        ->get();
+    $submenus = DB::table('sub__menus')
+        ->get();
+
+    $products = DB::table('add__products')->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
+            ->select('main__menus.id','main__menus.main_menu','add__products.*')
+            ->leftJoin('sub__menus', 'add__products.id_sub_menu', '=', 'sub__menus.id')
+            ->orWhere('sub_menu', 'like', "$name%")
+            ->orWhere('main_menu', 'like', "$name%")
+            ->select('sub__menus.sub_menu','main__menus.main_menu','add__products.*')
+            ->get();
+    return view('shop',['menus' => $menus,'submenus'=> $submenus,'products' => $products]); 
+});
+
+Route::post('/search', function (Request $request) {
+    $search =  $request->search;
+    if ($search === "date") {
+        $search = Carbon::now()->format('m');
+    }
+
+    $menus = DB::table('main__menus')
+        ->get();
+    $submenus = DB::table('sub__menus')
+        ->get();
+
+    $products = DB::table('add__products')->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
+            ->select('main__menus.id','main__menus.main_menu','add__products.*')
+            ->leftJoin('sub__menus', 'add__products.id_sub_menu', '=', 'sub__menus.id')
+            ->whereMonth('add__products.created_at', "$search")
+            ->orWhere('main_menu', 'like', "$search%")
+            ->orWhere('sub_menu', 'like', "$search%")
+            ->orWhere('product_name', 'like', "$search%")
+            ->orWhere('price', 'like', "$search%")
+            ->orWhere('price_discount', 'like', "$search%")
+            ->orWhere('status_product', 'like', "$search%")
+            ->select('sub__menus.sub_menu','main__menus.main_menu','add__products.*')
+            ->get();
+    return view('shop',['menus' => $menus,'submenus'=> $submenus,'products' => $products]); 
+});
+
+
+
 Route::get('/product', function () {
     return view('product');
 });

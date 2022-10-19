@@ -6,7 +6,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="search-content">
-                    <form action="#" method="get">
+                    <form action="{{url('/search')}}" method="post">
+                        @csrf
                         <input type="search" name="search" id="search" placeholder="Type your keyword...">
                         <button type="submit"><img src="../assets/img/core-img/search.png" alt=""></button>
                     </form>
