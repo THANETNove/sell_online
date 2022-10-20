@@ -21,7 +21,8 @@ use Carbon\Carbon;
 
 Route::get('/', function () {
     $products = DB::table('add__products')
-        ->get();
+    ->where('images_home', '!=' ,NULL)
+    ->get();
     return view('welcome',['products' => $products]);
 });
 Route::get('/shop', function () {
