@@ -340,12 +340,12 @@
                                 </script>
                                 , made with ❤️ by
                                 <a href="{{ url('https://line.me/R/ti/p/@883kwbfl') }}" target="_blank"
-                                    class="footer-link fw-bolder">@dutyfreetee</a>
+                                    class="footer-link fw-bolder"> @vsmoke777</a>
                             </div>
                             <div>
 
                                 <a href="{{ url('https://line.me/R/ti/p/@883kwbfl') }}" target="_blank"
-                                    class="footer-link me-4">สอบถามเพิ่มเติม LINE ID : @dutyfreetee</a>
+                                    class="footer-link me-4">สอบถามเพิ่มเติม LINE ID : @vsmoke777</a>
                             </div>
                         </div>
                     </footer>
