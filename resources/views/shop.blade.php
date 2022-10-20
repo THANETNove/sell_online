@@ -125,7 +125,7 @@
 
                     <!-- Single Product Area -->
                     @foreach ($products as $product)
-                        <div class="col-6 col-sm-6 col-md-6 col-xl-4">
+                        <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
                             <div class="single-product-wrapper">
                                 <!-- Product Image -->
                                 <div class="product-img">

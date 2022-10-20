@@ -71,11 +71,11 @@
                                         <li class="active" data-target="#product_details_slider" data-slide-to="0"
                                             style="background-image: url('{{ asset('/images/product/' . '' . $product->images) }}');">
                                         </li>
-                                        @if($product->images_home !== NULL)
+                                        {{-- @if($product->images_home !== NULL)
                                             <li data-target="#product_details_slider" data-slide-to="1"
                                                 style="background-image: url('{{ asset('/images/home/' . '' . $product->images_home) }}');">
                                             </li>
-                                        @endif
+                                        @endif --}}
                                     </ol>
                                     <div class="carousel-inner">
                                         <div class="carousel-item active">
@@ -84,14 +84,14 @@
                                                     alt="First slide">
                                             </a>
                                         </div>
-                                        @if($product->images_home !== NULL)
+                                        {{-- @if($product->images_home !== NULL)
                                             <div class="carousel-item">
                                                 <a class="gallery_img" href="{{ URL::asset('/images/home/' . '' . $product->images_home) }}">
                                                     <img class="d-block" src="{{ URL::asset('/images/home/' . '' . $product->images_home) }}"
                                                         alt="Second slide">
                                                 </a>
                                             </div>
-                                        @endif
+                                        @endif --}}
                                     </div>
                                 </div>
                             </div>
