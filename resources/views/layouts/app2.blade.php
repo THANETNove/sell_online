@@ -11,7 +11,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets2/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="{{ URL::asset('assets/img/core-img/logo-icon.png') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

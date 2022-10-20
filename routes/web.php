@@ -42,8 +42,8 @@ Route::get('/search/{name}', function ($name) {
     $submenus = DB::table('sub__menus')
         ->get();
 
-    $products = DB::table('add__products')->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
-            ->select('main__menus.id','main__menus.main_menu','add__products.*')
+    $products = DB::table('add__products')
+            ->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
             ->leftJoin('sub__menus', 'add__products.id_sub_menu', '=', 'sub__menus.id')
             ->orWhere('sub_menu', 'like', "$name%")
             ->orWhere('main_menu', 'like', "$name%")
@@ -63,8 +63,8 @@ Route::post('/search', function (Request $request) {
     $submenus = DB::table('sub__menus')
         ->get();
 
-    $products = DB::table('add__products')->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
-            ->select('main__menus.id','main__menus.main_menu','add__products.*')
+    $products = DB::table('add__products')
+            ->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
             ->leftJoin('sub__menus', 'add__products.id_sub_menu', '=', 'sub__menus.id')
             ->whereMonth('add__products.created_at', "$search")
             ->orWhere('main_menu', 'like', "$search%")
@@ -80,8 +80,15 @@ Route::post('/search', function (Request $request) {
 
 
 
-Route::get('/product', function () {
-    return view('product');
+Route::get('/product/{id}', function ($id) {
+
+    $products = DB::table('add__products')
+            ->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
+            ->leftJoin('sub__menus', 'add__products.id_sub_menu', '=', 'sub__menus.id')
+            ->where('add__products.id',$id)
+            ->select('sub__menus.sub_menu','main__menus.main_menu','add__products.*')
+            ->get();
+    return view('product',['products' => $products]);
 });
 
 Auth::routes();

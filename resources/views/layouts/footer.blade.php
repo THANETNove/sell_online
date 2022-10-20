@@ -49,7 +49,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());
                                         <a class="nav-link"  href="{{url('/shop')}}">Shop</a>
                                     </li>
                                     <li class="nav-item" id="product-footer">
-                                        <a class="nav-link"  href="{{url('/product')}}">Product</a>
+                                        <a class="nav-link" href="{{ url('https://line.me/R/ti/p/@883kwbfl') }}" target="_blank">Support</a>
                                     </li>
                                 </ul>
                             </div>

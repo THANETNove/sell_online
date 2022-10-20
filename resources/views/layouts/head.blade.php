@@ -8,7 +8,8 @@
 <title>Dutyfreetee - จำหน่าย เหล้านอก,ไวน์,บุหรี่นอก และอื่นๆ</title>
 
 <!-- Favicon  -->
-<link rel="icon" href="../assets/img/core-img/favicon.ico">
+{{-- <link rel="icon" href="../assets/img/core-img/favicon.ico"> --}}
+<link rel="icon" href="{{ URL::asset('assets/img/core-img/logo-icon.png') }}">
 
 <!-- Core Style CSS -->
 <link rel="stylesheet" href="../assets/css/core-style.css">

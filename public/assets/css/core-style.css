@@ -857,11 +857,13 @@ img {
         margin-bottom: 15px;
         display: block; }
       .main-content-wrapper .single-product-area .single_product_desc .product-meta-data .product-price {
-        font-size: 24px;
+        font-size: 20px;
         font-weight: 400;
         color: #fbb710;
         line-height: 1;
         margin-bottom: 10px; }
+        .main-content-wrapper .single-product-area .single_product_desc .product-meta-data .product-price .line-text {
+          text-decoration: line-through !important; }
       .main-content-wrapper .single-product-area .single_product_desc .product-meta-data a {
         display: block; }
         .main-content-wrapper .single-product-area .single_product_desc .product-meta-data a h6 {
@@ -1108,8 +1110,10 @@ img {
     .single-product-wrapper .product-description .product-meta-data .product-price {
       line-height: 1;
       color: #fbb710;
-      font-size: 24px;
+      font-size: 16px;
       margin-bottom: 10px; }
+    .single-product-wrapper .product-description .product-meta-data .product-price .line-text {
+        text-decoration: line-through !important;}
     .single-product-wrapper .product-description .product-meta-data a {
       display: block; }
       .single-product-wrapper .product-description .product-meta-data a h6 {
@@ -1401,6 +1405,10 @@ img {
     border-radius: 0;
     background-color: #f5f7fa; }
 
+.carousel-inner {
+  align-items: center !important;
+  width: 100%;
+}
 /* ##### The End ##### */
 
 /*# sourceMappingURL=core-style.css.map */

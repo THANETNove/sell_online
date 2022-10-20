@@ -3,11 +3,6 @@
 
 <head>
     @include('layouts.head')
-    <style>
-        .line-text {
-            text-decoration: line-through !important;
-        }
-    </style>
 </head>
 
 <body>
@@ -22,7 +17,7 @@
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="index.html"><img src="../assets/img/core-img/logo.png" alt=""></a>
+                @include('layouts.logo') 
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -38,7 +33,7 @@
             </div>
             <!-- Logo -->
             <div class="logo">
-                <a href="index.html"><img src="../assets/img/core-img/logo.png" alt=""></a>
+                @include('layouts.logo') 
             </div>
             <!-- Amado Nav -->
             @include('layouts.navbar')
@@ -134,8 +129,10 @@
                             <div class="single-product-wrapper">
                                 <!-- Product Image -->
                                 <div class="product-img">
-                                    <img src="{{ URL::asset('/images/product/' . '' . $product->images) }}"
+                                   <a href="{{url('/product', $product->id)}}">
+                                        <img src="{{ URL::asset('/images/product/' . '' . $product->images) }}"
                                         alt="">
+                                   </a>
                                     <!-- Hover Thumb -->
 
                                 </div>
@@ -153,11 +150,11 @@
                                       {{--   <p class="product-price">$180</p> --}}
 
                                         @if($product->price_discount !== NULL)
-                                            <p class="">{{$product->discount}} <span  class="line-text">&nbsp;&nbsp;{{$product->price}}</span>&nbsp;&nbsp; {{$product->price_discount}}</p>
+                                            <p class="product-price ">{{$product->discount}} &nbsp;&nbsp;<span  class="line-text">{{$product->price}}</span>&nbsp;&nbsp; {{$product->price_discount}}</p>
                                         @else
-                                            <p class="">{{$product->price}}</p>
+                                            <p class="product-price">{{$product->price}}</p>
                                         @endif
-                                        <a href="product-details.html">
+                                        <a href="{{url('/product', $product->id)}}">
                                             <h6>{{ $product->product_name }}</h6>
                                         </a>
                                     </div>
