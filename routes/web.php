@@ -6,8 +6,11 @@ use App\Http\Controllers\addAdminController;
 use App\Http\Controllers\Main_MenuController;
 use App\Http\Controllers\Sub_MenuController;
 use App\Http\Controllers\AddProductController;
+use App\Http\Controllers\Web_NewController;
+use App\Http\Controllers\CatagoriesController;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+/* use session; */
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,19 +24,31 @@ use Carbon\Carbon;
 
 Route::get('/', function () {
     $products = DB::table('add__products')
-    /* ->where('images_home', '!=' ,NULL) */
+    ->where('images_home', '!=' ,NULL)
     ->get();
+    $webName = DB::table('web__names')
+    ->get();
+    $webName  = $webName[0]->web_names;
+
+
+    Session::put('web_name', $webName);
     return view('welcome',['products' => $products]);
 });
+
+
+/**
+ * !  shop */
 Route::get('/shop', function () {
     $menus = DB::table('main__menus')
         ->get();
     $submenus = DB::table('sub__menus')
         ->get();
+    $catagories = DB::table('catagories')
+        ->get();
     $products = DB::table('add__products')
         ->paginate(100);
 
-    return view('shop',['menus' => $menus,'submenus'=> $submenus,'products' => $products]);
+    return view('shop',['menus' => $menus,'submenus'=> $submenus,'products' => $products,'catagories' => $catagories]);
 });
 
 Route::get('/search/{name}', function ($name) {
@@ -44,13 +59,16 @@ Route::get('/search/{name}', function ($name) {
         ->get();
 
     $products = DB::table('add__products')
-            ->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
-            ->leftJoin('sub__menus', 'add__products.id_sub_menu', '=', 'sub__menus.id')
-            ->orWhere('sub_menu', 'like', "$name%")
-            ->orWhere('main_menu', 'like', "$name%")
-            ->select('sub__menus.sub_menu','main__menus.main_menu','add__products.*')
-            ->get();
-    return view('shop',['menus' => $menus,'submenus'=> $submenus,'products' => $products]); 
+        ->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
+        ->leftJoin('sub__menus', 'add__products.id_sub_menu', '=', 'sub__menus.id')
+        ->orWhere('sub_menu', 'like', "$name%")
+        ->orWhere('main_menu', 'like', "$name%")
+        ->select('sub__menus.sub_menu','main__menus.main_menu','add__products.*')
+        ->get();
+
+    $catagories = DB::table('catagories')
+        ->get();
+    return view('shop',['menus' => $menus,'submenus'=> $submenus,'products' => $products, 'catagories'=> $catagories]); 
 });
 
 Route::post('/search', function (Request $request) {
@@ -65,22 +83,26 @@ Route::post('/search', function (Request $request) {
         ->get();
 
     $products = DB::table('add__products')
-            ->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
-            ->leftJoin('sub__menus', 'add__products.id_sub_menu', '=', 'sub__menus.id')
-            ->whereMonth('add__products.created_at', "$search")
-            ->orWhere('main_menu', 'like', "$search%")
-            ->orWhere('sub_menu', 'like', "$search%")
-            ->orWhere('product_name', 'like', "$search%")
-            ->orWhere('price', 'like', "$search%")
-            ->orWhere('price_discount', 'like', "$search%")
-            ->orWhere('status_product', 'like', "$search%")
-            ->select('sub__menus.sub_menu','main__menus.main_menu','add__products.*')
+        ->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
+        ->leftJoin('sub__menus', 'add__products.id_sub_menu', '=', 'sub__menus.id')
+        ->whereMonth('add__products.created_at', "$search")
+        ->orWhere('main_menu', 'like', "$search%")
+        ->orWhere('sub_menu', 'like', "$search%")
+        ->orWhere('product_name', 'like', "$search%")
+        ->orWhere('price', 'like', "$search%")
+        ->orWhere('price_discount', 'like', "$search%")
+        ->orWhere('status_product', 'like', "$search%")
+        ->select('sub__menus.sub_menu','main__menus.main_menu','add__products.*')
+        ->get();
+    
+    $catagories = DB::table('catagories')
             ->get();
-    return view('shop',['menus' => $menus,'submenus'=> $submenus,'products' => $products]); 
+    return view('shop',['menus' => $menus,'submenus'=> $submenus,'products' => $products,'catagories' => $catagories]); 
 });
 
 
-
+/**
+ * !  product */
 Route::get('/product/{id}', function ($id) {
 
     $products = DB::table('add__products')
@@ -92,6 +114,8 @@ Route::get('/product/{id}', function ($id) {
     return view('product',['products' => $products]);
 });
 
+/**
+ * ! ส่วนของ admin  */
 Auth::routes();
 
 //หน้า Home
@@ -124,6 +148,19 @@ Route::post('/add_product',[ AddProductController::class,'store']);
 Route::get('/edit-product/{id}',[ AddProductController::class,'edit']);
 Route::put('/update-product/{id}',[ AddProductController::class,'update']);
 Route::get('/destroy-product/{id}',[ AddProductController::class,'destroy']);
+
+Route::get('web-name',[ Web_NewController::class,'index']);
+Route::get('create-website-name',[ Web_NewController::class,'create']);
+Route::post('new-web-name',[ Web_NewController::class,'store']);
+Route::get('edit-web-name/{id}',[ Web_NewController::class,'edit']);
+Route::put('update-web-name/{id}',[ Web_NewController::class,'update']);
+
+Route::get('/catagories',[ CatagoriesController::class,'index']);
+Route::get('/create-catagories',[ CatagoriesController::class,'create']);
+Route::post('/new-catagories',[ CatagoriesController::class,'store']);
+Route::get('/edit-catagorie/{id}',[ CatagoriesController::class,'edit']);
+Route::put('update-catagorie/{id}',[ CatagoriesController::class,'update']);
+Route::get('destroy-catagorie/{id}',[ CatagoriesController::class,'destroy']);
 //ค้นหา
 /* search_main_manu */
 /* Route::post('/search_main_manu', [AddProductController::class, 'index']); */

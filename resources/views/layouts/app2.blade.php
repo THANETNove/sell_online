@@ -6,7 +6,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
-    <title>Dutyfreetee - จำหน่าย เหล้านอก,ไวน์,บุหรี่นอก และอื่นๆ</title>
+    <title>{{ Session::get('web_name') }}</title>
 
     <meta name="description" content="" />
 
@@ -102,7 +102,7 @@
                                     </g>
                                 </svg>
                             </span>
-                            <span class="app-brand-text demo menu-text fw-bolder ms-2">Dutyfreetee</span>
+                            <span class="app-brand-text demo menu-text fw-bolder ms-2">Vsmoke</span>
                         </a>
 
                         <a href="javascript:void(0);"
@@ -184,6 +184,24 @@
                                 <li class="menu-item">
                                     <a href="{{ url('/register') }}" class="menu-link">
                                         <div data-i18n="Under Maintenance">เพิ่ม Admin</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                                <i class="menu-icon tf-icons bx bx-lock-open-alt"></i>
+                                <div data-i18n="Misc">เว็บไชต์</div>
+                            </a>
+                            <ul class="menu-sub">
+                                <li class="menu-item">
+                                    <a href="{{ url('/web-name') }}" class="menu-link">
+                                        <div data-i18n="Error">ชื่อเว็บไชต์</div>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="{{ url('/catagories') }}" class="menu-link">
+                                        <div data-i18n="Error">หัวข้อเมนู</div>
                                     </a>
                                 </li>
                             </ul>

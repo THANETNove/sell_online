@@ -9,7 +9,7 @@
                     <div class="d-flex align-items-end row">
                         <div class="col-sm-12">
                             <div class="card-body">
-                                <h5 class="card-title text-primary">เมนูหลัก 🎉 </h5>
+                                <h5 class="card-title text-primary">หัวข้อเมนู 🎉  <span style="float:right;"> <a href="{{url('/create-catagories')}}" {{--  style="display:none" --}} class="btn btn-sm btn-outline-primary">เพิ่มข้อเมนู</a></span> </h5>
 
                                 @php
                                     $i = 0;
@@ -27,10 +27,10 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-border-bottom-0">
-                                                    @foreach ($menus as $menu)
+                                                    @foreach ($catagories as $catagorie)
                                                         <tr>
                                                             <td> {{ ++$i }}</td>
-                                                            <td>{{$menu->main_menu }}</td>
+                                                            <td>{{$catagorie->catagorie }}</td>
                                                             <td>
                                                                 <div class="dropdown">
                                                                     <button type="button"
@@ -40,10 +40,10 @@
                                                                     </button>
                                                                     <div class="dropdown-menu">
                                                                         <a class="dropdown-item"
-                                                                            href="{{ url('/edit-main_menu', $menu->id) }}"><i
+                                                                            href="{{ url('/edit-catagorie', $catagorie->id) }}"><i
                                                                                 class="bx bx-edit-alt me-1"></i> Edit</a>
-                                                                        <a class="dropdown-item" onClick="javascript:return confirm('เมนูย่อย ที่เกี่ยวกับ เมนูหลัก   {{ $menu->main_menu }} ทั้งหมด จะถูกลบ คุณต้องการลบข้อมูลใช่หรือไม่ ! ');"
-                                                                            href="{{url('/destroy-main_menu',$menu->id)}}"><i
+                                                                        <a class="dropdown-item" onClick="javascript:return confirm('หัวข้อเมนู   {{ $catagorie->catagorie }}  จะถูกลบ คุณต้องการลบข้อมูลใช่หรือไม่ ! ');"
+                                                                            href="{{url('/destroy-catagorie',$catagorie->id)}}"><i
                                                                                 class="bx bx-trash me-1"></i> Delete</a>
                                                                     </div>
                                                                 </div>

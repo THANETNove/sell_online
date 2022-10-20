@@ -27,7 +27,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Dutyfreetee - จำหน่าย เหล้านอก,ไวน์,บุหรี่นอก และอื่นๆ</title>
+    <title>{{ Session::get('web_name') }}</title>
 
     <meta name="description" content="" />
 
@@ -131,12 +131,12 @@
                       </g>
                     </svg>
                   </span>
-                  <span class="app-brand-text demo text-body fw-bolder">Dutyfreetee</span>
+                  <span class="app-brand-text demo text-body fw-bolder">Vsmoke</span>
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2">Dutyfreetee 👋</h4>
-              <p class="mb-4">Dutyfreetee - จำหน่าย เหล้านอก,ไวน์,บุหรี่นอก และอื่นๆ</p>
+              <h4 class="mb-2">Vsmoke 👋</h4>
+              <p class="mb-4">Vsmoke - จำหน่าย เหล้านอก,ไวน์,บุหรี่นอก และอื่นๆ</p>
 
               <form  method="POST" action="{{ route('login') }}">
                 @csrf

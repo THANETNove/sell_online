@@ -5,7 +5,7 @@
 <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 <!-- Title  -->
-<title>Dutyfreetee - จำหน่าย เหล้านอก,ไวน์,บุหรี่นอก และอื่นๆ</title>
+<title>{{ Session::get('web_name') }}</title>
 
 <!-- Favicon  -->
 {{-- <link rel="icon" href="../assets/img/core-img/favicon.ico"> --}}

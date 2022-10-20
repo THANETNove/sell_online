@@ -9,17 +9,17 @@
                     <div class="d-flex align-items-end row">
                         <div class="col-sm-7 col-lg-12 mb-12">
                             <div class="card-body">
-                                <h5 class="card-title text-primary">เเก้ไข เมนูหลัก 🎉 <span style="float:right;"> <a href="{{url('/main-menu')}}" class="btn btn-sm btn-outline-primary">ย้อนกลับ</a></span></h5>
-                                <form method="POST" action="{{url('update-main_menu',$menu->id)}}">
+                                <h5 class="card-title text-primary">เเก้ไข เมนูหลัก 🎉 <span style="float:right;"> <a href="{{url('/web-name')}}" class="btn btn-sm btn-outline-primary">ย้อนกลับ</a></span></h5>
+                                <form method="POST" action="{{url('update-catagorie',$catagories->id)}}">
                                     @csrf
                                     @method('PUT')
                                     <div class="row mb-3">
-                                        <label for="main_menu" class="col-md-4 col-form-label text-md-end">{{ __('Main Menu') }}</label>
+                                        <label for="catagorie" class="col-md-4 col-form-label text-md-end">{{ __('หัวข้อเมนู') }}</label>
             
                                         <div class="col-md-6">
-                                            <input id="main_menu" type="text" class="form-control @error('main_menu') is-invalid @enderror" name="main_menu" value="{{ $menu->main_menu}}" required autocomplete="name" autofocus>
+                                            <input id="catagorie" type="text" class="form-control @error('catagorie') is-invalid @enderror" name="catagorie" value="{{ $catagories->catagorie}}" required autocomplete="name" autofocus>
             
-                                            @error('main_menu')
+                                            @error('catagorie')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>

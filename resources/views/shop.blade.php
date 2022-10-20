@@ -48,8 +48,12 @@
             <!-- ##### Single Widget ##### -->
             <div class="widget catagory mb-50">
                 <!-- Widget Title -->
-                <h6 class="widget-title mb-30">Catagories</h6>
-
+                @foreach ($catagories as $catagorie)
+                    @if($catagorie->catagorie)
+                        <h6 class="widget-title mb-30">{{$catagorie->catagorie}}</h6>
+                    @endif
+                  
+                @endforeach
                 <!--  Catagories  -->
                 <div class="catagories-menu">
                     <ul>
