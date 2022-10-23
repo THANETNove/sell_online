@@ -111,8 +111,7 @@ class AddProductController extends Controller
         $validated = $request->validate([
             'product_name' => ['required', 'string', 'max:255'],
             'price' => ['required', 'string', 'max:255'],
-            'image' => ['required', 'image', 'mimes:jpg,png,jpeg','max:2048'],
-            'image_home' => ['image', 'mimes:jpg,png,jpeg','max:2048'],
+            'image.*' => ['required', 'image', 'mimes:jpg,png,jpeg','max:2048'],
             /* 'image' => ['required|image|mimes:jpg,png,jpeg,gif,svg|max:2048'], */
         ]);
       
@@ -130,20 +129,17 @@ class AddProductController extends Controller
         $member->discount = $request['discount'];
         $member->price_discount = $request['price_discount'];
         
-        $image = $request->file('image');  
+        $dateImg = [];
             if($request->hasFile('image')){
-                $image = $request->file('image');
-                $image->move(public_path().'/images/product',$dateText."".$image->getClientOriginalName());
-                $member->images=$dateText."".$image->getClientOriginalName();
+                $imagefile = $request->file('image');
+               /*  $image->move(public_path().'/images/product',$dateText."".$image->getClientOriginalName()); */
+                foreach ($imagefile as $image) {
+                  $data =   $image->move(public_path().'/images/product',$dateText."".$image->getClientOriginalName());
+                  $dateImg[] =  $dateText."".$image->getClientOriginalName();
+                }
             }
+        dd($dateImg);
 
-       /*   $image_home = $request->file('image_home'); */  
-         
-             if($request->hasFile('image_home')){
-              $image_home = $request->file('image_home');
-                $image_home->move(public_path().'/images/home',$dateText."home".$image_home->getClientOriginalName());
-                $member->images_home=$dateText."home".$image_home->getClientOriginalName();
-            }
          $member->save();
          $menus = DB::table('add__products')->count();
         Cookie::queue('count_product', $menus);

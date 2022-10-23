@@ -134,7 +134,7 @@
                                         <label for="images"
                                             class="col-md-4 col-form-label text-md-end">{{ __('รูปภาพ Shop (PNG,JPEG,JPG) *') }}</label>
                                         <div class="col-md-6">
-                                            <input class="form-control @error('image') is-invalid @enderror" type="file" id="formFile" name="image" required>
+                                            <input class="form-control @error('image') is-invalid @enderror" type="file" id="formFile" name="image[]" multiple>
                                             @error('image')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }} (PNG,JPEG,JPG)</strong>
@@ -143,7 +143,7 @@
                                             <h6 style="color:#F08080;margin-top: 10px;">ขนาด ภาพ ที่ เเนะนำสำหรับ หน้า Shop   ภาพขนาด&nbsp;723*747<br></h6>
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
+                                {{--     <div class="row mb-3">
                                         <label for="image_home"
                                             class="col-md-4 col-form-label text-md-end">{{ __('รูปภาพ Home (PNG,JPEG,JPG)') }}</label>
                                         <div class="col-md-6">
@@ -169,7 +169,7 @@
                                                 <br>ภาพที่&nbsp;11&nbsp;ขนาดเท่ากับภาพขนาดที่&nbsp;&nbsp;2 
                                             </h6>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="row mb-0">
                                         <div class="col-md-6 offset-md-4">
                                             <button type="submit" class="btn btn-primary">

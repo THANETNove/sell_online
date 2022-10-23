@@ -450,7 +450,7 @@ img {
       margin-bottom: 100px;
       display: block; }
     .main-content-wrapper .header-area .amado-nav li a {
-      font-size: 14px;
+      font-size: 16px;
       text-transform: uppercase;
       position: relative;
       z-index: 1;
@@ -502,10 +502,12 @@ img {
       .main-content-wrapper .header-area .cart-fav-search a:hover, .main-content-wrapper .header-area .cart-fav-search a:focus {
         color: #fbb710; }
     .main-content-wrapper .header-area .social-info a {
-      color: #b5b5b5;
+      color: #32C70A;
+      text-align: center;
+      margin-top: -80px;
       display: inline-block; }
       .main-content-wrapper .header-area .social-info a i {
-        font-size: 18px; }
+        font-size: 50px; }
       .main-content-wrapper .header-area .social-info a:hover, .main-content-wrapper .header-area .social-info a:focus {
         color: #fbb710; }
     @media only screen and (max-width: 767px) {

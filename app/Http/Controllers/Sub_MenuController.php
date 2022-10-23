@@ -29,7 +29,8 @@ class Sub_MenuController extends Controller
         if ($search) {
             $menus = $menus->get();
         }else{
-            $menus =  $menus->paginate(100); 
+            $menus =  $menus->orderBy('sub__menus.id','DESC')
+            ->paginate(100); 
         }
         return view('menu.sub_menu.index',['menus'=>$menus]);
     }

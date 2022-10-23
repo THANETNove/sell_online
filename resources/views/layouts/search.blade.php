@@ -8,7 +8,7 @@
                 <div class="search-content">
                     <form action="{{url('/search')}}" method="post">
                         @csrf
-                        <input type="search" name="search" id="search" placeholder="Type your keyword...">
+                        <input type="search" name="search" id="search" placeholder="ค้นหาข้อมูลสินค้า">
                         <button type="submit"><img src="../assets/img/core-img/search.png" alt=""></button>
                     </form>
                 </div>

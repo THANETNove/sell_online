@@ -16,7 +16,6 @@ class Add_Product extends Model
         'price',
         'name_details',
         'name_details_more',
-        'images_home',
         'status_product',
         'discount',
         'price_discount',

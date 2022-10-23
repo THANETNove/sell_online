@@ -6,9 +6,9 @@
                 <!-- Newsletter Text -->
                 <div class="col-12 col-lg-12 col-xl-12">
                     <div class="newsletter-text mb-100">
-                        <h2>เว็บไซต์ <span> & Facebook Page : Burisho</span></h2>
-                        <p>  !! เตือนภัย !! ลูกค้าทุกท่านด้วยความเคารพ ทางร้านไม่มีเพจนะครับ มีเพียง ”เว็บไซต์ & Facebook Page : Burishop จำหน่ายบุหรี่นอก” นี้เท่านั้น กรณีที่มีผู้ไม่หวังดีเอาชื่อเว็บของทางร้าน ไปเปิดเป็นเพจหรืออื่นๆ เพื่อแอบอ้างหลอกลวง หรือด้วยเหตุใดก็แล้วแต่ โปรดอย่าหลงเชื่อ!! ทางเราจะไม่รับผิดชอบต่อผลที่ตามมาใดๆทั้งสิ้น “ขอบคุณครับ” </p>
-                        <p>สอบถามเพิ่มเติม LINE ID :  @vsmoke777 </p>
+                        <h2><span>Vsmoke</span></h2>
+                        <p>หากมีคำติชม สามารถแจ้งกับแอดมินทางไลน์ เพื่อให้ทางร้านแก้ไขปรับปรุงในส่วนที่บกพร่อง หวังเป็นอย่างยิ่งว่าทาง V smoke จะได้บริการลูกค้าทุกท่าน</p>
+                        <p>ติดต่อได้ที่ Line ID : @vsmoke777</p>
                     </div>
                 </div>
             </div>
@@ -28,8 +28,7 @@
                     <!-- Copywrite Text -->
                     <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 Copyright &copy;<script>document.write(new Date().getFullYear());
-</script> เว็บไซต์  & Facebook Page : Burisho
- <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="{{url('https://line.me/R/ti/p/@883kwbfl')}}"  target="_blank">สอบถามเพิ่มเติม LINE ID :   @vsmoke777</a> 
+</script>   <a href="{{url('https://line.me/R/ti/p/@883kwbfl')}}"  target="_blank"> Vsmoke777</a> 
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                 </div>
             </div>

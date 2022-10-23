@@ -24,8 +24,7 @@ return new class extends Migration
             $table->string('status_product');
             $table->string('discount')->nullable();
             $table->string('price_discount')->nullable();
-            $table->string('images')->nullable();
-            $table->string('images_home')->nullable();
+            $table->json('images')->nullable();
             $table->timestamps();
         });
     }

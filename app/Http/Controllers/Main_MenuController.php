@@ -29,7 +29,8 @@ class Main_MenuController extends Controller
         if ($search) {
             $menus = $menus->get();
         }else{
-            $menus =  $menus->paginate(100); 
+            $menus =  $menus->orderBy('main__menus.id','DESC')
+            ->paginate(100); 
         }
         return view('menu.main_menu.index',['menus' => $menus] );
     }

@@ -10,6 +10,12 @@
 <!-- Favicon  -->
 {{-- <link rel="icon" href="../assets/img/core-img/favicon.ico"> --}}
 <link rel="icon" href="{{ URL::asset('assets/img/core-img/logo-icon.png') }}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:url"                content="https://mobile-fixit.com/" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="Vsmoke บุหรี่นอก" />
+<meta property="og:description"        content="จัดจำหน่ายสินค้านำเข้าจากต่างประเทศ ราคาเป็นมิตร มีประวัติกา..." />
+<meta property="og:image"              content="assets/img/core-img/logo_line.png" />
 
 <!-- Core Style CSS -->
 <link rel="stylesheet" href="../assets/css/core-style.css">
