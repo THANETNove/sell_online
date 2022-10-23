@@ -195,28 +195,25 @@ class AddProductController extends Controller
         $member->status_product = $request['status_product'];
         $member->discount = $request['discount'];
         $member->price_discount = $request['price_discount'];
-        $image = $request->file('image');  
-        $img = $member->images;
-
-        if($request->hasFile('image')){
-            $image_path = public_path().'/images/product/'.$img; 
+        $img = json_decode($member->images);
+        foreach( $img as $image) {
+            $image_path = public_path().'/images/product/'.$image; 
             unlink($image_path);
-         $image = $request->file('image');
-            $image->move(public_path().'/images/product',$dateText."".$image->getClientOriginalName());
-            $member->images=$dateText."".$image->getClientOriginalName(); 
         }
-        $img_home = $member->images_home;
 
-        if($request->hasFile('image_home')){
-            if ($img_home) {
-                $image_path_home = public_path().'/images/home/'.$img_home; 
-                unlink($image_path_home);
+        $dateImg = [];
+        if($request->hasFile('image')){
+            $imagefile = $request->file('image');
+           /*  $image->move(public_path().'/images/product',$dateText."".$image->getClientOriginalName()); */
+            foreach ($imagefile as $image) {
+              $data =   $image->move(public_path().'/images/product',$dateText."".$image->getClientOriginalName());
+              $dateImg[] =  $dateText."".$image->getClientOriginalName();
             }
-           
-            $image_home = $request->file('image_home');
-            $image_home->move(public_path().'/images/home',$dateText."home".$image_home->getClientOriginalName());
-            $member->images_home=$dateText."home".$image_home->getClientOriginalName();
-          }
+        }
+/*     dd($dateImg); */
+    $member->images = json_encode($dateImg);
+
+
         $member->save();
 
         return redirect('home')->with('message', "เเก้ไข สินค้า ".$request['product_name']." เรียบร้อย" );
@@ -233,14 +230,17 @@ class AddProductController extends Controller
 
         $data = Add_Product::find($id);
         $img = $data->images;
-        $img_home = $data->images_home;
+
         $name = $data->product_name;
-        $image_path = public_path().'/images/product/'.$img; 
-        unlink($image_path);
-        if ($img_home) {
-            $image_path_home = public_path().'/images/home/'.$img_home; 
-            unlink($image_path_home);
+        
+        $img = json_decode($data->images);
+        foreach( $img as $image) {
+            $image_path = public_path().'/images/product/'.$image; 
+            unlink($image_path);
         }
+       /*  $image_path = public_path().'/images/product/'.$img; 
+        unlink($image_path); */
+
         $data->delete();
 
         return redirect('home')->with('message', "ลบ สินค้า ".$name." เรียบร้อย" );
