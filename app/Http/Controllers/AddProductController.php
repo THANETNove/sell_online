@@ -138,8 +138,8 @@ class AddProductController extends Controller
                   $dateImg[] =  $dateText."".$image->getClientOriginalName();
                 }
             }
-        dd($dateImg);
-
+    /*     dd($dateImg); */
+        $member->images = json_encode($dateImg);
          $member->save();
          $menus = DB::table('add__products')->count();
         Cookie::queue('count_product', $menus);

@@ -66,12 +66,7 @@
                                                                 <img src="{{ URL::asset('/images/product/' . '' . $menu->images) }}"
                                                                     height="90px" width="80px">
                                                             </td>
-                                                            <td>
-                                                                @if($menu->images_home)
-                                                                <img src="{{ URL::asset('/images/home/' . '' . $menu->images_home) }}"
-                                                                    height="90px" width="80px">
-                                                                @endif
-                                                            </td>
+                                                           
                                                             <td>
                                                                 <div class="dropdown">
                                                                     <button type="button"

@@ -50,7 +50,7 @@
         <!-- Product Catagories Area Start -->
         <div class="products-catagories-area clearfix">
             <div class="amado-pro-catagory clearfix">
-                @foreach ($products as $menu)
+             {{--    @foreach ($products as $menu)
                 <div class="single-products-catagory clearfix">
                     <a href="{{url('/product', $menu->id)}}">
                         <img src="{{ URL::asset('/images/home/' . '' . $menu->images_home) }}" 
@@ -63,7 +63,7 @@
                         </div>
                     </a>
                 </div>
-                @endforeach
+                @endforeach --}}
 
            
             </div>

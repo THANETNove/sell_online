@@ -24,7 +24,6 @@ use Carbon\Carbon;
 
 Route::get('/', function () {
     $products = DB::table('add__products')
-    ->where('images_home', '!=' ,NULL)
     ->get();
     $webName = DB::table('web__names')
     ->get();

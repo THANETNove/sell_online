@@ -133,10 +133,16 @@
                             <div class="single-product-wrapper">
                                 <!-- Product Image -->
                                 <div class="product-img">
+                                    @php
+                                    $data = json_decode($product->images);
+                                    $data =  $data[0];
+                                   /*  dd($data); */
+                                    @endphp
                                    <a href="{{url('/product', $product->id)}}">
-                                        <img src="{{ URL::asset('/images/product/' . '' . $product->images) }}"
+                                        <img src="{{ URL::asset('/images/product/' . '' . $data) }}"
                                         alt="">
                                    </a>
+    
                                     <!-- Hover Thumb -->
 
                                 </div>

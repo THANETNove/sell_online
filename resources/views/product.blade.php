@@ -67,31 +67,37 @@
                         <div class="col-12 col-lg-7">
                             <div class="single_product_thumb">
                                 <div id="product_details_slider" class="carousel slide" data-ride="carousel">
-                                    <ol class="carousel-indicators">
-                                        <li class="active" data-target="#product_details_slider" data-slide-to="0"
-                                            style="background-image: url('{{ asset('/images/product/' . '' . $product->images) }}');">
-                                        </li>
-                                        {{-- @if($product->images_home !== NULL)
-                                            <li data-target="#product_details_slider" data-slide-to="1"
-                                                style="background-image: url('{{ asset('/images/home/' . '' . $product->images_home) }}');">
+                                    @php
+                                    $data = json_decode($product->images);
+                                    $li = 1;
+                                    $jl = 1;
+                                   /*  dd($data); */
+                                    @endphp
+                                     
+                                     <ol class="carousel-indicators">
+                                        @foreach ($data as $img)
+                                            @php
+                                            /* $con = $img. */
+                                            $il = $jl++
+                                            @endphp
+                                            <li class="" id="ig_{{$il}}"  onclick="myFunction({{$il}})" data-target="#product_details_slider" data-slide-to="0"
+                                                style="background-image: url('{{ asset('/images/product/' . '' .$img) }}');">
                                             </li>
-                                        @endif --}}
+                                        @endforeach
                                     </ol>
-                                    <div class="carousel-inner">
-                                        <div class="carousel-item active">
-                                            <a class="gallery_img" href="{{ URL::asset('/images/product/' . '' . $product->images) }}">
-                                                <img class="d-block" src="{{ URL::asset('/images/product/' . '' . $product->images) }}"
+                                     <div class="carousel-inner">
+                                        @foreach ($data as $img)
+                                        @php
+                                        /* $con = $img. */
+                                        $li_l = $li++
+                                        @endphp
+                                        <div class="carousel-item" id="mg_{{$li_l}}">
+                                            <a  class="gallery_img"  href="{{ URL::asset('/images/product/' . '' .$data[0]) }}">
+                                                <img class="d-block"  src="{{ URL::asset('/images/product/' . '' . $data[0]) }}"
                                                     alt="First slide">
                                             </a>
                                         </div>
-                                        {{-- @if($product->images_home !== NULL)
-                                            <div class="carousel-item">
-                                                <a class="gallery_img" href="{{ URL::asset('/images/home/' . '' . $product->images_home) }}">
-                                                    <img class="d-block" src="{{ URL::asset('/images/home/' . '' . $product->images_home) }}"
-                                                        alt="Second slide">
-                                                </a>
-                                            </div>
-                                        @endif --}}
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -168,10 +174,56 @@
     </div>
     <!-- ##### Main Content Wrapper End ##### -->
     <!-- ##### Newsletter Area End ##### -->
+    <script>
+        $("#ig_1").addClass("active");
+        $("#mg_1").addClass("active");
+
+        function myFunction(e,j) {
+             
+                console.log(j,e);
+            if (e == "1") {    
+                $("#ig_1").addClass("active");
+                $("#ig_2").removeClass("active");
+                $("#ig_3").removeClass("active");
+
+                $("#mg_1").addClass("active");
+                $("#mg_2").removeClass("active");
+                $("#mg_3").removeClass("active");
+                console.log("1");
+            }else if(e == "2") {
+                $("#ig_1").removeClass("active");
+                $("#ig_2").addClass("active");
+                $("#ig_3").removeClass("active");
+
+                
+               /*  $("#mg_1").removeClass("active");
+                $("#mg_2").addClass("active");
+                $("#mg_3").removeClass("active"); */
+
+             
+         /*         */
+        
+                console.log("2");
+            }else{
+                $("#ig_1").removeClass("active");
+                $("#ig_2").removeClass("active");
+                $("#ig_3").addClass("active");
+
+              /*   $("#img_1").removeClass("active");
+                $("#img_2").removeClass("active");
+                $("#img_3").addClass("active"); */
+                console.log("3");
+            }
+         /*    console.log("555");
+            $("#ig_"+e).addClass("active");
+            $("#img_1"+e).addClass("active"); */
+            }
+    </script>
     @include('layouts.footer')
     <!-- ##### Footer Area End ##### -->
 
     @include('layouts.js')
+
 
 
 </body>
