@@ -26,7 +26,9 @@ use Carbon\Carbon;
 Route::get('/', function () {
     $products = DB::table('add__products')
     ->where('status_product','=','สินค้าขายดี')
-    ->get();
+   /*  ->get(); */
+   ->paginate(100);
+
     $webName = DB::table('web__names')
     ->get();
     $img_home = DB::table('best_sellers')
@@ -56,7 +58,7 @@ Route::get('/shop', function () {
         ->get();
     $products = DB::table('add__products')
     ->orderBy('add__products.id', 'desc')
-        ->paginate(100);
+    ->paginate(100);
 
     return view('shop',['menus' => $menus,'submenus'=> $submenus,'products' => $products,'catagories' => $catagories]);
 });

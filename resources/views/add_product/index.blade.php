@@ -96,14 +96,14 @@
                                                     @endforeach
                                                 </tbody>
                                             </table>
-                                            <br>
+                                        </div>
+                                        <br>
                                             <?php
                                             $url_GET =  $_SERVER['REQUEST_METHOD'];
                                             ?>
                                             @if ($url_GET === "GET")
                                                 {!! $menus->links() !!}
                                             @endif
-                                        </div>
                                     </div>
                                 </div>
                             </div>

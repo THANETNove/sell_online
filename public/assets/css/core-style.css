@@ -569,24 +569,24 @@ img {
     position: relative;
     z-index: 1;
     -webkit-box-flex: 0;
-    -ms-flex: 0 0 calc(95% - 550px);
-    flex: 0 0 calc(95% - 550px);
-    width: calc(95% - 550px);
-    max-width: calc(95% - 550px); }
+    -ms-flex: 0 0 calc(95% - 200px);
+    flex: 0 0 calc(95% - 200px);
+    width: calc(95% - 200px);
+    max-width: calc(95% - 200px); }
     @media only screen and (min-width: 992px) and (max-width: 1199px) {
       .main-content-wrapper .amado_product_area {
         -webkit-box-flex: 0;
-        -ms-flex: 0 0 calc(100% - 550px);
-        flex: 0 0 calc(100% - 550px);
-        width: calc(100% - 550px);
-        max-width: calc(100% - 550px); } }
+        -ms-flex: 0 0 calc(100% - 300px);
+        flex: 0 0 calc(100% - 300px);
+        width: calc(100% - 300px);
+        max-width: calc(100% - 300px); } }
     @media only screen and (min-width: 768px) and (max-width: 991px) {
       .main-content-wrapper .amado_product_area {
         -webkit-box-flex: 0;
-        -ms-flex: 0 0 calc(100% - 460px);
-        flex: 0 0 calc(100% - 460px);
-        width: calc(100% - 460px);
-        max-width: calc(100% - 460px); } }
+        -ms-flex: 0 0 calc(100% - 200px);
+        flex: 0 0 calc(100% - 200px);
+        width: calc(100% - 200px);
+        max-width: calc(100% - 200px); } }
     @media only screen and (max-width: 767px) {
       .main-content-wrapper .amado_product_area {
         -webkit-box-flex: 0;
@@ -1437,6 +1437,9 @@ img {
   color: #fbb710; 
   font-size: 18px;
   margin-left: 10px;
+}
+.active3 {
+  color: #fbb710 !important; 
 }
 .amado-nav {
   margin-top: -70px !important;

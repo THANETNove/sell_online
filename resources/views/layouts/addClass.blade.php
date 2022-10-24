@@ -1,7 +1,7 @@
 <script>
     $(document).ready(function(){
         let actual_link =  window.location.pathname;
-      console.log("actual_link",actual_link);
+        
          if (actual_link === "/") {
             $("#home").addClass("active2");
             $("#home-footer").addClass("active");

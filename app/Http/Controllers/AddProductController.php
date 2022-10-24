@@ -34,7 +34,7 @@ class AddProductController extends Controller
             ->orWhere('main_menu', 'like', "$search%")
             ->orWhere('status_product', 'like', "$search%")
             ->orderBy('add__products.id', 'desc')
-            ->paginate(100);
+            ->get();
          }else{
             $menus = $menus->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
             ->select('main__menus.main_menu','add__products.*')

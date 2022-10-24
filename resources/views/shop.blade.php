@@ -60,12 +60,32 @@
                 @endforeach
                 <!--  Catagories  -->
                 <div class="catagories-menu">
+                    <?php
+                    $url_GET = $_SERVER['REQUEST_METHOD'];
+                    $url_name = $_SERVER['PHP_SELF'];
+                    $name = substr($url_name,18);
+                  
+                    ?>
                     <ul>
                         @foreach ($menus as $menu)
-                            <li><a href="{{ '/search' . '/' . $menu->main_menu }}">{{ $menu->main_menu }}</a></li>
+                        
+                            @php
+                              $classActive = '';
+                                if ($name == $menu->main_menu) {
+                                    $classActive = 'active3';
+                                }
+                            @endphp
+                            
+                            <li><a  id="{{$menu->main_menu}}" class="{{$classActive}}"   href="{{ '/search' . '/' . $menu->main_menu }}">{{ $menu->main_menu }}</a></li>
                             @foreach ($submenus as $sub)
+                            @php
+                            $classActive = '';
+                              if ($name == $sub->sub_menu) {
+                                  $classActive = 'active3';
+                              }
+                          @endphp
                                 @if ($menu->id == $sub->id_main_menu)
-                                    <li><a href="{{ '/search' . '/' . $sub->sub_menu }}">&nbsp;- {{ $sub->sub_menu }}</a>
+                                    <li><a  class="{{$classActive}}" id="{{$sub->sub_menu}}"href="{{ '/search' . '/' . $sub->sub_menu }}">&nbsp;- {{ $sub->sub_menu }}</a>
                                     </li>
                                 @endif
                             @endforeach
@@ -223,12 +243,17 @@
     @include('layouts.js')
 
     <script>
+    let actual_link =  window.location.pathname;
+    const encoded = encodeURI(actual_link);
+    console.log("actual_link",  encoded);
         function myFunction() {
-            console.log("888");
+
             $('#search-post').click(); 
-         /*  var x = document.getElementById("mySelect").value;
-          document.getElementById("demo").innerHTML = "You selected: " + x; */
         }
+
+        function myManu(e) {
+                    console.log(e);
+            }
         </script>
 </body>
 

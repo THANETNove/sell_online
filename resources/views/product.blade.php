@@ -57,8 +57,8 @@
                     <div class="col-12">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mt-50">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                                <li class="breadcrumb-item"><a href="{{url('/')}}">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{url('/shop')}}">Shop</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">white modern product</li>
                             </ol>
                         </nav>

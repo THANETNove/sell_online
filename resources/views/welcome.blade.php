@@ -193,25 +193,15 @@
                                 </div>
                             </div>
                         @endforeach
-                    </div>
-    
-                    <div class="row">
-                        <div class="col-12">
-                            <!-- Pagination -->
-                            <nav aria-label="navigation">
-                                <ul class="pagination justify-content-end mt-50">
-                                    <?php
-                                    $url_GET = $_SERVER['REQUEST_METHOD'];
-                                    $url_name = $_SERVER['PHP_SELF'];
-                                    ?>
-                                    @if ($url_GET === 'GET')
-                                        @if ($url_name === '/index.php/shop')
-                                            {!! $products->links() !!}
-                                        @endif
-                                    @endif
-                                </ul>
-                            </nav>
-                        </div>
+                        <?php
+                        $url_GET = $_SERVER['REQUEST_METHOD'];
+                        ?>
+                        @if ($url_GET === 'GET')
+                                {!! $products->links() !!}
+                        @endif
+                        <br>
+                        <br>
+                        <br>
                     </div>
                 </div>
             </div>
@@ -241,11 +231,10 @@
         <!-- Product Catagories Area End -->
     </div>
     <script>
+
         function myFunction() {
             console.log("888");
             $('#search-post').click(); 
-         /*  var x = document.getElementById("mySelect").value;
-          document.getElementById("demo").innerHTML = "You selected: " + x; */
         }
         </script>
     <!-- ##### Main Content Wrapper End ##### -->
