@@ -25,14 +25,23 @@ use Carbon\Carbon;
 
 Route::get('/', function () {
     $products = DB::table('add__products')
+    ->where('status_product','=','สินค้าขายดี')
     ->get();
     $webName = DB::table('web__names')
     ->get();
+    $img_home = DB::table('best_sellers')
+    ->get();
     $webName  = $webName[0]->web_names;
+
+    $manu = DB::table('main__menus')
+    ->get();
+
+    $images = $img_home[0]->images;
+    $images = json_decode($images);
 
 
     Session::put('web_name', $webName);
-    return view('welcome',['products' => $products]);
+    return view('welcome',['products' => $products, 'images' => $images,'manu' => $manu]);
 });
 
 

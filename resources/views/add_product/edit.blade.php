@@ -134,14 +134,22 @@
                                                 <option value="สินค้าหมด">สินค้าหมด</option> --}}
                                                 @if ($product->status_product === "ไม่มีสถานะ")
                                                     <option value="ไม่มีสถานะ" selected>ไม่มีสถานะ</option>
+                                                    <option value="สินค้าขายดี">สินค้าขายดี</option>
                                                     <option value="new">New</option>
                                                     <option value="สินค้าหมด">สินค้าหมด</option>
                                                 @elseif ($product->status_product === "new")
                                                     <option value="ไม่มีสถานะ">ไม่มีสถานะ</option>
+                                                    <option value="สินค้าขายดี">สินค้าขายดี</option>
+                                                    <option value="new" selected>New</option>
+                                                    <option value="สินค้าหมด">สินค้าหมด</option>
+                                                @elseif ($product->status_product === "สินค้าขายดี")
+                                                    <option value="ไม่มีสถานะ">ไม่มีสถานะ</option>
+                                                    <option value="สินค้าขายดี">สินค้าขายดี</option>
                                                     <option value="new" selected>New</option>
                                                     <option value="สินค้าหมด">สินค้าหมด</option>
                                                 @else
                                                     <option value="ไม่มีสถานะ">ไม่มีสถานะ</option>
+                                                    <option value="สินค้าขายดี">สินค้าขายดี</option>
                                                     <option value="new">New</option>
                                                     <option value="สินค้าหมด" selected>สินค้าหมด</option>
                                                 @endif

@@ -125,6 +125,7 @@
                                             <select id="product_home" class="form-select form-select-lg"
                                                 name="status_product">
                                                 <option value="ไม่มีสถานะ">ไม่มีสถานะ</option>
+                                                <option value="สินค้าขายดี">สินค้าขายดี</option>
                                                 <option value="new">New</option>
                                                 <option value="สินค้าหมด">สินค้าหมด</option>
                                             </select>
@@ -134,7 +135,7 @@
                                         <label for="images"
                                             class="col-md-4 col-form-label text-md-end">{{ __('รูปภาพ Shop (PNG,JPEG,JPG) *') }}</label>
                                         <div class="col-md-6">
-                                            <input class="form-control @error('image') is-invalid @enderror" type="file" id="formFile" name="image[]" multiple>
+                                            <input class="form-control @error('image') is-invalid @enderror" type="file" id="formFile" name="image[]" multiple required>
                                             @error('image')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }} (PNG,JPEG,JPG)</strong>

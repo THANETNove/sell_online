@@ -8,6 +8,7 @@
 </head>
 
 <body>
+    @include('layouts.navbar2') 
     <!-- Search Wrapper Area Start -->
     @include('layouts.search')
     <!-- Search Wrapper Area End -->
@@ -28,7 +29,7 @@
         </div>
 
         <!-- Header Area Start -->
-        <header class="header-area clearfix">
+{{--         <header class="header-area clearfix">
             <!-- Close Icon -->
             <div class="nav-close">
                 <i class="fa fa-close" aria-hidden="true"></i>
@@ -42,11 +43,11 @@
             <!-- Button Group -->
             <!-- Cart Menu -->
             @include('layouts.icon_link')
-        </header>
+        </header> --}}
         <!-- Header Area End -->
 
         <!-- Product Details Area Start -->
-        <div class="single-product-area section-padding-100 clearfix">
+        <div class="single-product-area  clearfix">
             <div class="container-fluid">
 
                 <div class="row">

@@ -103,14 +103,15 @@ class Best_SellerController extends Controller
       
 
         $member =  Best_seller::find($id);
-        $img = json_decode($member->images);
-        foreach( $img as $image) {
-            $image_path = public_path().'/images/home/'.$image; 
-            unlink($image_path);
-        }
-
+       
+     
         $dateImg = [];
         if($request->hasFile('image')){
+            $img = json_decode($member->images);
+            foreach( $img as $image) {
+                $image_path = public_path().'/images/home/'.$image; 
+                unlink($image_path);
+            }    
             $imagefile = $request->file('image');
             foreach ($imagefile as $image) {
               $data =   $image->move(public_path().'/images/home',$dateText."".$image->getClientOriginalName());

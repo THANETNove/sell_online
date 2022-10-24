@@ -6,6 +6,8 @@
 </head>
 
 <body>
+
+    @include('layouts.navbar2') 
     <!-- Search Wrapper Area Start -->
     @include('layouts.search')
     <!-- Search Wrapper Area End -->
@@ -24,7 +26,7 @@
                 <span></span><span></span><span></span>
             </div>
         </div>
-
+{{-- 
         <!-- Header Area Start -->
         <header class="header-area clearfix">
             <!-- Close Icon -->
@@ -40,7 +42,7 @@
             <!-- Cart Menu -->
             <!-- Social Button -->
             @include('layouts.icon_link')
-        </header>
+        </header> --}}
         <!-- Header Area End -->
 
         <div class="shop_sidebar_area">
@@ -129,7 +131,7 @@
 
                     <!-- Single Product Area -->
                     @foreach ($products as $product)
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                        <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
                             <div class="single-product-wrapper">
                                 <!-- Product Image -->
                                 <div class="product-img">

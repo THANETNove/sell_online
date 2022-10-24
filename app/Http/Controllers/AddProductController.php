@@ -195,23 +195,26 @@ class AddProductController extends Controller
         $member->status_product = $request['status_product'];
         $member->discount = $request['discount'];
         $member->price_discount = $request['price_discount'];
-        $img = json_decode($member->images);
-        foreach( $img as $image) {
-            $image_path = public_path().'/images/product/'.$image; 
-            unlink($image_path);
-        }
+        
+ 
 
         $dateImg = [];
         if($request->hasFile('image')){
+            $img = json_decode($member->images);
+            foreach( $img as $image) {
+                $image_path = public_path().'/images/product/'.$image; 
+                unlink($image_path);
+            }
             $imagefile = $request->file('image');
            /*  $image->move(public_path().'/images/product',$dateText."".$image->getClientOriginalName()); */
             foreach ($imagefile as $image) {
               $data =   $image->move(public_path().'/images/product',$dateText."".$image->getClientOriginalName());
               $dateImg[] =  $dateText."".$image->getClientOriginalName();
             }
+            $member->images = json_encode($dateImg);
         }
 /*     dd($dateImg); */
-    $member->images = json_encode($dateImg);
+   
 
 
         $member->save();

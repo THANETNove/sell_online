@@ -57,6 +57,9 @@
                                                                         style="color:red;">{{ $menu->status_product }}</span>
                                                                 @elseif ($menu->status_product === 'new')
                                                                     <span
+                                                                        style="color:rgb(43, 158, 2);">{{ $menu->status_product }}</span>
+                                                                @elseif ($menu->status_product === 'สินค้าขายดี')
+                                                                    <span
                                                                         style="color:blue;">{{ $menu->status_product }}</span>
                                                                 
                                                                 @endif
