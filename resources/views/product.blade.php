@@ -20,7 +20,7 @@
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                @include('layouts.logo') 
+                @include('layouts.logo2') 
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -29,21 +29,24 @@
         </div>
 
         <!-- Header Area Start -->
-{{--         <header class="header-area clearfix">
-            <!-- Close Icon -->
-            <div class="nav-close">
-                <i class="fa fa-close" aria-hidden="true"></i>
-            </div>
-            <!-- Logo -->
-            <div class="logo">
-                @include('layouts.logo') 
-            </div>
-            <!-- Amado Nav -->
-            @include('layouts.navbar')
-            <!-- Button Group -->
-            <!-- Cart Menu -->
-            @include('layouts.icon_link')
-        </header> --}}
+        <div class="w-768">
+            <header class="header-area clearfix">
+                <!-- Close Icon -->
+                <div class="nav-close">
+                    <i class="fa fa-close" aria-hidden="true"></i>
+                </div>
+                <!-- Logo -->
+                <div class="logo">
+                    @include('layouts.logo2')
+
+                </div>
+                <!-- Amado Nav -->
+                @include('layouts.navbar')
+                <!-- Button Group -->
+                <!-- Cart Menu -->
+                @include('layouts.icon_link')
+            </header>
+        </div>
         <!-- Header Area End -->
 
         <!-- Product Details Area Start -->
@@ -56,7 +59,6 @@
                             <ol class="breadcrumb mt-50">
                                 <li class="breadcrumb-item"><a href="#">Home</a></li>
                                 <li class="breadcrumb-item"><a href="#">Shop</a></li>
-                                <li class="breadcrumb-item"><a href="#">Chairs</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">white modern product</li>
                             </ol>
                         </nav>

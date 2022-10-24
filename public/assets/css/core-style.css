@@ -1089,8 +1089,7 @@ img {
     overflow: hidden; }
     .single-product-wrapper .product-img img {
       width: 250px;
-      height: 320px;
-      
+      height: 300px;
       -webkit-transition-duration: 500ms;
       transition-duration: 500ms; }
     .single-product-wrapper .product-img .hover-img {

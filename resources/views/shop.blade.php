@@ -19,30 +19,32 @@
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                @include('layouts.logo') 
+                @include('layouts.logo2') 
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
                 <span></span><span></span><span></span>
             </div>
         </div>
-{{-- 
-        <!-- Header Area Start -->
-        <header class="header-area clearfix">
-            <!-- Close Icon -->
-            <div class="nav-close">
-                <i class="fa fa-close" aria-hidden="true"></i>
-            </div>
-            <!-- Logo -->
-            <div class="logo">
-                @include('layouts.logo') 
-            </div>
-            <!-- Amado Nav -->
-            @include('layouts.navbar')
-            <!-- Cart Menu -->
-            <!-- Social Button -->
-            @include('layouts.icon_link')
-        </header> --}}
+
+        <div class="w-768">
+            <header class="header-area clearfix">
+                <!-- Close Icon -->
+                <div class="nav-close">
+                    <i class="fa fa-close" aria-hidden="true"></i>
+                </div>
+                <!-- Logo -->
+                <div class="logo">
+                    @include('layouts.logo2')
+
+                </div>
+                <!-- Amado Nav -->
+                @include('layouts.navbar')
+                <!-- Button Group -->
+                <!-- Cart Menu -->
+                @include('layouts.icon_link')
+            </header>
+        </div>
         <!-- Header Area End -->
 
         <div class="shop_sidebar_area">
