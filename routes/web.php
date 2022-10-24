@@ -8,6 +8,7 @@ use App\Http\Controllers\Sub_MenuController;
 use App\Http\Controllers\AddProductController;
 use App\Http\Controllers\Web_NewController;
 use App\Http\Controllers\CatagoriesController;
+use App\Http\Controllers\Best_SellerController;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 /* use session; */
@@ -160,6 +161,11 @@ Route::post('/new-catagories',[ CatagoriesController::class,'store']);
 Route::get('/edit-catagorie/{id}',[ CatagoriesController::class,'edit']);
 Route::put('update-catagorie/{id}',[ CatagoriesController::class,'update']);
 Route::get('destroy-catagorie/{id}',[ CatagoriesController::class,'destroy']);
+Route::get('best-seller',[ Best_SellerController::class,'index']);
+Route::get('create-best-seller',[ Best_SellerController::class,'create']);
+Route::post('new-best-seller',[ Best_SellerController::class,'store']);
+Route::get('edit-best-seller/{id}',[ Best_SellerController::class,'edit']);
+Route::put('update-best-seller/{id}',[ Best_SellerController::class,'update']);
 //ค้นหา
 /* search_main_manu */
 /* Route::post('/search_main_manu', [AddProductController::class, 'index']); */

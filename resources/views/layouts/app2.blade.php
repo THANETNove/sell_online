@@ -168,6 +168,11 @@
                                         <div data-i18n="Basic">เพิ่ม</div>
                                     </a>
                                 </li>
+                                <li class="menu-item">
+                                    <a href="{{ url('/best-seller') }}" class="menu-link">
+                                        <div data-i18n="Basic">เพิ่ม สินค้าขายดี</div>
+                                    </a>
+                                </li>
                             </ul>
                         </li>
                         <li class="menu-item">
