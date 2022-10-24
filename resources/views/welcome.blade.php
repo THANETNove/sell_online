@@ -10,15 +10,12 @@
 <body>
 
     @include('layouts.navbar2')
-    <div class="col-12 col-lg-12">
-
-    </div>
     <!-- Search Wrapper Area Start -->
 
     <!-- Search Wrapper Area End -->
     @include('layouts.search')
     <!-- ##### Main Content Wrapper Start ##### -->
-    <div class="main-content-wrapper d-flex clearfix">
+    <div class="main-content-wrapper  clearfix">
 
         <!-- Mobile Nav (max width 767px)-->
         <div class="mobile-nav">
@@ -108,6 +105,8 @@
                                 <!-- Total Products -->
                                 <div class="total-products">
                                     <br>
+                                    <br>
+                                    <br>
                                     <h4>สินค้าขายดี</h4>
                                     <div class="view d-flex">
                                         <a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
@@ -131,9 +130,7 @@
                             </div>
                         </div>
                     </div>
-    
                     <div class="row">
-    
                         <!-- Single Product Area -->
                         @foreach ($products as $product)
                             <div class="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
@@ -149,9 +146,6 @@
                                             <img src="{{ URL::asset('/images/product/' . '' . $data) }}"
                                             alt="">
                                        </a>
-        
-                                        <!-- Hover Thumb -->
-    
                                     </div>
                                     <!-- Product Description -->
                                     <div class="product-description d-flex align-items-center justify-content-between">

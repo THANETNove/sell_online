@@ -170,7 +170,7 @@
                                 </li>
                                 <li class="menu-item">
                                     <a href="{{ url('/best-seller') }}" class="menu-link">
-                                        <div data-i18n="Basic">เพิ่ม สินค้าขายดี</div>
+                                        <div data-i18n="Basic">สินค้าขายดี</div>
                                     </a>
                                 </li>
                             </ul>
