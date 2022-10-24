@@ -26,8 +26,9 @@ class Main_MenuController extends Controller
         
         $menus = DB::table('main__menus')
         ->orWhere('main_menu', 'like', "$search%");
+
         if ($search) {
-            $menus = $menus->get();
+            $menus = $menus->orderBy('main__menus.id','DESC')->get();
         }else{
             $menus =  $menus->orderBy('main__menus.id','DESC')
             ->paginate(100); 

@@ -55,6 +55,7 @@ Route::get('/shop', function () {
     $catagories = DB::table('catagories')
         ->get();
     $products = DB::table('add__products')
+    ->orderBy('add__products.id', 'desc')
         ->paginate(100);
 
     return view('shop',['menus' => $menus,'submenus'=> $submenus,'products' => $products,'catagories' => $catagories]);
@@ -73,6 +74,7 @@ Route::get('/search/{name}', function ($name) {
         ->orWhere('sub_menu', 'like', "$name%")
         ->orWhere('main_menu', 'like', "$name%")
         ->select('sub__menus.sub_menu','main__menus.main_menu','add__products.*')
+        ->orderBy('add__products.id', 'desc')
         ->get();
 
     $catagories = DB::table('catagories')
@@ -102,6 +104,7 @@ Route::post('/search', function (Request $request) {
         ->orWhere('price_discount', 'like', "$search%")
         ->orWhere('status_product', 'like', "$search%")
         ->select('sub__menus.sub_menu','main__menus.main_menu','add__products.*')
+        ->orderBy('add__products.id', 'desc')
         ->get();
     
     $catagories = DB::table('catagories')

@@ -27,7 +27,7 @@ class Sub_MenuController extends Controller
         ->orWhere('main_menu', 'like', "$search%");
    
         if ($search) {
-            $menus = $menus->get();
+            $menus = $menus->orderBy('sub__menus.id','DESC')->get();
         }else{
             $menus =  $menus->orderBy('sub__menus.id','DESC')
             ->paginate(100); 
