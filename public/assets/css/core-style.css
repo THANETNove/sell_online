@@ -1409,9 +1409,10 @@ img {
     border-radius: 0;
     background-color: #f5f7fa; }
 
-.carousel-inner {
-  align-items: center !important;
-  width: 100%;
+.carousel-inner a {
+  display: flex;
+  justify-content: center;
+
 }
 /* ##### The End ##### */
 

@@ -29,7 +29,6 @@
                                                         <th>เมนูย่อย</th>
                                                         <th>สถานะ</th>
                                                         <th>ภาพสินค้าหน้า Shop</th>
-                                                        <th>ภาพสินค้าหน้า Home </th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
@@ -62,8 +61,13 @@
                                                                 
                                                                 @endif
                                                             </td>
+                                                            @php
+                                                            $data = json_decode($menu->images);
+                                                            $data =  $data[0];
+                                                           /*  dd($data); */
+                                                            @endphp
                                                             <td>
-                                                                <img src="{{ URL::asset('/images/product/' . '' . $menu->images) }}"
+                                                                <img src="{{ URL::asset('/images/product/' . '' . $data) }}"
                                                                     height="90px" width="80px">
                                                             </td>
                                                            

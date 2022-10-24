@@ -69,31 +69,37 @@
                                 <div id="product_details_slider" class="carousel slide" data-ride="carousel">
                                     @php
                                     $data = json_decode($product->images);
-                                    $li = 1;
-                                    $jl = 1;
-                                   /*  dd($data); */
+                                    $li = 0;
+                                    $jl = 0;
                                     @endphp
                                      
                                      <ol class="carousel-indicators">
-                                        @foreach ($data as $img)
+                                        @foreach ($data as $key => $img)
                                             @php
-                                            /* $con = $img. */
-                                            $il = $jl++
+                                            $il = $jl++;
+                                            $classActive = "";
+                                            if ($key == 0) {
+                                                $classActive = "active";
+                                            }
                                             @endphp
-                                            <li class="" id="ig_{{$il}}"  onclick="myFunction({{$il}})" data-target="#product_details_slider" data-slide-to="0"
+                                            <li class="{{$classActive}}" {{-- id="ig_{{$il}}" --}}  onclick="myFunction({{$il}})" data-target="#product_details_slider" data-slide-to="{{$il}}"
                                                 style="background-image: url('{{ asset('/images/product/' . '' .$img) }}');">
                                             </li>
                                         @endforeach
                                     </ol>
                                      <div class="carousel-inner">
-                                        @foreach ($data as $img)
+                                        @foreach ($data as $key => $img)
                                         @php
                                         /* $con = $img. */
-                                        $li_l = $li++
+                                        $li_l = $li++;
+                                        $classActive = "";
+                                        if ($key == 0) {
+                                                $classActive = "active";
+                                            }
                                         @endphp
-                                        <div class="carousel-item" id="mg_{{$li_l}}">
-                                            <a  class="gallery_img"  href="{{ URL::asset('/images/product/' . '' .$data[0]) }}">
-                                                <img class="d-block"  src="{{ URL::asset('/images/product/' . '' . $data[0]) }}"
+                                        <div class="carousel-item {{$classActive}}" >
+                                            <a  class="gallery_img"  href="{{ URL::asset('/images/product/' . '' .$img) }}">
+                                                <img class="d-block"  src="{{ URL::asset('/images/product/' . '' . $img) }}"
                                                     alt="First slide">
                                             </a>
                                         </div>
@@ -174,51 +180,7 @@
     </div>
     <!-- ##### Main Content Wrapper End ##### -->
     <!-- ##### Newsletter Area End ##### -->
-    <script>
-        $("#ig_1").addClass("active");
-        $("#mg_1").addClass("active");
-
-        function myFunction(e,j) {
-             
-                console.log(j,e);
-            if (e == "1") {    
-                $("#ig_1").addClass("active");
-                $("#ig_2").removeClass("active");
-                $("#ig_3").removeClass("active");
-
-                $("#mg_1").addClass("active");
-                $("#mg_2").removeClass("active");
-                $("#mg_3").removeClass("active");
-                console.log("1");
-            }else if(e == "2") {
-                $("#ig_1").removeClass("active");
-                $("#ig_2").addClass("active");
-                $("#ig_3").removeClass("active");
-
-                
-               /*  $("#mg_1").removeClass("active");
-                $("#mg_2").addClass("active");
-                $("#mg_3").removeClass("active"); */
-
-             
-         /*         */
-        
-                console.log("2");
-            }else{
-                $("#ig_1").removeClass("active");
-                $("#ig_2").removeClass("active");
-                $("#ig_3").addClass("active");
-
-              /*   $("#img_1").removeClass("active");
-                $("#img_2").removeClass("active");
-                $("#img_3").addClass("active"); */
-                console.log("3");
-            }
-         /*    console.log("555");
-            $("#ig_"+e).addClass("active");
-            $("#img_1"+e).addClass("active"); */
-            }
-    </script>
+  
     @include('layouts.footer')
     <!-- ##### Footer Area End ##### -->
 
