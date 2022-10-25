@@ -50,7 +50,15 @@ class AddProductController extends Controller
         $groups = DB::table('sub__menus')
             ->where('id', $id)
             ->get();
-        return   $groups[0]->sub_menu;
+        $con = $groups->count();
+        if ($con > 0) {
+            $groups =   $groups[0]->sub_menu;
+            return $groups;
+        }else{
+            return null;
+        }
+           
+        /* return  $groups[0]->sub_menu;; */
     }
 
     /**

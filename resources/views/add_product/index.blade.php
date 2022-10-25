@@ -45,7 +45,7 @@
                                                                     class="badge bg-label-primary me-1">{{ $menu->main_menu }}</span>
                                                             </td>
                                                             <td>
-                                                                @if ($menu->id_sub_menu != 'null')
+                                                                @if ($menu->id_sub_menu != null)
                                                                     <span class="badge bg-label-primary me-1">
                                                                         {{ $sub_manu->getSubManu($menu->id_sub_menu) }}
                                                                     </span>
