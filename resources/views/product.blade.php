@@ -155,14 +155,14 @@
                                 <div class="short_overview my-4">
                                     @if ($product->name_details !== null)
                                         <h6 style="color: #fbb710">รายละเอียดสินค้า</h6>
-                                        <p>{{ $product->name_details }}</p>
+                                        <p>{!! $product->name_details !!}</p>
                                     @endif
                                 </div>
 
                                 <div class="short_overview my-4">
                                     @if ($product->name_details_more !== null)
                                         <h6 style="color: #fbb710">รายละเอียดสินค้า เพิ่มเติม</h6>
-                                        <p>{{ $product->name_details_more }}</p>
+                                        <p>{!! $product->name_details_more !!}</p>
                                     @endif
                                 </div>
 

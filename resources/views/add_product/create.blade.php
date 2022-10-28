@@ -96,7 +96,7 @@
                                         <label for="name_details"
                                             class="col-md-4 col-form-label text-md-end">{{ __('รายละเอียดสินค้า') }}</label>
                                         <div class="col-md-6">
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="name_details"
+                                            <textarea class="form-control" id="particulars" id="exampleFormControlTextarea1" rows="4" name="name_details"
                                             placeholder="รายละเอียดสินค้า" autocomplete="รายละเอียดสินค้า"></textarea>
                                             @error('name_details')
                                                 <span class="invalid-feedback" role="alert">
@@ -109,7 +109,7 @@
                                         <label for="name_details_more"
                                             class="col-md-4 col-form-label text-md-end">{{ __('รายละเอียดสินค้า เพิ่มเติม') }}</label>
                                         <div class="col-md-6">
-                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" name="name_details_more"
+                                            <textarea class="form-control" id="name_details_more" rows="4" name="name_details_more"
                                             placeholder="รายละเอียดสินค้า เพิ่มเติม" autocomplete="name_details_more"></textarea>
                                             @error('name_details_more')
                                                 <span class="invalid-feedback" role="alert">
@@ -187,7 +187,7 @@
         </div>
 
 
-        <script>
+        <script  type="text/javascript">
             $(document).ready(function() {
 
                 let main_menu = document.getElementById("id_main_menu").value;
@@ -226,5 +226,7 @@
                     }
                 });
             }
+            CKEDITOR.replace( 'name_details' );
+            CKEDITOR.replace( 'name_details_more' );
         </script>
     @endsection

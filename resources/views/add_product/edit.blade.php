@@ -268,6 +268,8 @@
                     } 
                 });
             }
+            CKEDITOR.replace( 'name_details' );
+            CKEDITOR.replace( 'name_details_more' );
         </script>
 
 

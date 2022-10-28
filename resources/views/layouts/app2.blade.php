@@ -43,6 +43,8 @@
     <script src="../assets2/js/config.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     {{--     @vite(['resources/sass/app.scss', 'resources/js/app.js']) --}}
+    <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>
+    
 </head>
 
 <body>
