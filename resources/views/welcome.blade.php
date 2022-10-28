@@ -116,12 +116,12 @@
                                 <!-- Sorting -->
                                 <div class="product-sorting d-flex">
                                     <div class="sort-by-date d-flex align-items-center mr-15">
-                                        <p>Sort by</p>
-                                        <form action="{{url('/search')}}" method="post">
+                                        <p>&nbsp;</p>
+                                        <form action="{{url('/sort')}}" method="post">
                                             @csrf
-                                            <select name="search" id="sortBydate" onchange="myFunction()">
-                                                <option value="date">Date</option>
-                                                <option value="new">Newest</option>
+                                            <select name="searchSort" id="sortBydate" onchange="myFunction()">
+                                                <option value="AZ">เรียงลำดับ A-Z</option>
+                                                <option value="ZA">เรียงลำดับ Z-A</option>
                                             </select>
                                             <button type="submit" style="display:none" id="search-post"><img src="../assets/img/core-img/search.png" alt=""></button>
                                         </form>
@@ -170,7 +170,7 @@
                                             </a>
                                         </div>
                                         <!-- Ratings & Cart -->
-                                        <div class="ratings-cart text-right">
+{{--                                         <div class="ratings-cart text-right">
                                             <div class="ratings">
                                                 <i class="fa fa-star" aria-hidden="true"></i>
                                                 <i class="fa fa-star" aria-hidden="true"></i>
@@ -182,7 +182,7 @@
                                                 <a href="cart.html" data-toggle="tooltip" data-placement="left"
                                                     title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                             </div>

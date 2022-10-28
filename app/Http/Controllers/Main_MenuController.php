@@ -28,9 +28,9 @@ class Main_MenuController extends Controller
         ->orWhere('main_menu', 'like', "$search%");
 
         if ($search) {
-            $menus = $menus->orderBy('main__menus.id','DESC')->get();
+            $menus = $menus->orderBy('main__menus.sort_manu','ASC')->get();
         }else{
-            $menus =  $menus->orderBy('main__menus.id','DESC')
+            $menus =  $menus->orderBy('main__menus.sort_manu','ASC')
             ->paginate(100); 
         }
         return view('menu.main_menu.index',['menus' => $menus] );
@@ -47,6 +47,8 @@ class Main_MenuController extends Controller
         return view('menu.main_menu.create' );
     }
 
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -61,7 +63,14 @@ class Main_MenuController extends Controller
         ]);
         $member = new Main_Menu;
         $member->main_menu = $request['main_menu'];
+      /*   $member->sort_manu = "asdas"; */
+/*         dd($member->id); */
         $member->save();
+        $affected = DB::table('main__menus')
+        ->where('id', $member->id)
+        ->update(
+            ['sort_manu' => $member->id]
+          );
 
         return redirect('create-main-menu')->with('message', "เพิ่ม เมนู ".$request['main_menu']." เรียบร้อย" );
     }
@@ -98,11 +107,31 @@ class Main_MenuController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $member = Main_Menu::find($id);
         $member->main_menu = $request['main_menu'];
         $member->save();
         return redirect('main-menu')->with('message', "เเก้ไข เมนู ".$request['main_menu']." เรียบร้อย" );
     }
+
+
+    public function sort_manu(Request $request, $id)
+    {
+     /*  dd($id,$request->sort_manu); */
+      $affected = DB::table('main__menus')
+      ->where('id', $id)
+      ->update(
+          ['sort_manu' => $request->sort_manu]
+        );
+        $namu =  DB::table('main__menus')
+        ->where('id', $id)
+        ->get();
+        $namu = $namu[0]->main_menu;
+     /*    dd($namu[0]->main_menu); */
+        return redirect('main-menu')->with('message', "เปลี่ยน $namu เป็น ลำดับ $request->sort_manu เรียบร้อย");
+/*         return view('menu.main_menu.create' ); */
+    }
+
 
     /**
      * Remove the specified resource from storage.

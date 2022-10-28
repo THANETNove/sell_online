@@ -23,22 +23,44 @@ class AddProductController extends Controller
 
     public function index(Request $request) {
         $search =  $request->search;
+
+        
          $menus = DB::table('add__products');
 
          if ($search) {
-            $menus = $menus->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
-            ->leftJoin('sub__menus', 'add__products.id_main_menu', '=', 'sub__menus.id')
-            ->select('main__menus.id','sub__menus.sub_menu','sub__menus.id_main_menu','main__menus.main_menu','add__products.*')
-            ->orWhere('product_name', 'like', "$search%")
-            ->orWhere('sub_menu', 'like', "$search%")
-            ->orWhere('main_menu', 'like', "$search%")
-            ->orWhere('status_product', 'like', "$search%")
-            ->orderBy('add__products.id', 'desc')
-            ->get();
+             if ($search == "AZ") {
+
+          /*       dd($search); */
+                $menus = $menus->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
+                ->leftJoin('sub__menus', 'add__products.id_main_menu', '=', 'sub__menus.id')
+                ->select('main__menus.id','sub__menus.sub_menu','sub__menus.id_main_menu','main__menus.main_menu','add__products.*')
+                ->orderBy('add__products.product_name', 'ASC')
+                ->get();
+             }elseif($search == "ZA"){
+            /*     dd($search); */
+                $menus = $menus->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
+                ->leftJoin('sub__menus', 'add__products.id_main_menu', '=', 'sub__menus.id')
+                ->select('main__menus.id','sub__menus.sub_menu','sub__menus.id_main_menu','main__menus.main_menu','add__products.*')
+                ->orderBy('add__products.product_name', 'DESC')
+                ->get();
+
+             }else{
+                $menus = $menus->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
+                ->leftJoin('sub__menus', 'add__products.id_main_menu', '=', 'sub__menus.id')
+                ->select('main__menus.id','sub__menus.sub_menu','sub__menus.id_main_menu','main__menus.main_menu','add__products.*')
+                ->orWhere('product_name', 'like', "$search%")
+                ->orWhere('sub_menu', 'like', "$search%")
+                ->orWhere('main_menu', 'like', "$search%")
+                ->orWhere('status_product', 'like', "$search%")
+                ->orderBy('add__products.product_name', 'ASC')
+                ->get();
+             }
+
+      
          }else{
             $menus = $menus->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
             ->select('main__menus.main_menu','add__products.*')
-            ->orderBy('add__products.id', 'desc')
+            ->orderBy('add__products.product_name', 'ASC')
             ->paginate(100);
          }
          Cookie::queue('count_product',  $menus->count());

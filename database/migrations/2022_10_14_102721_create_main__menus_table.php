@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('main__menus', function (Blueprint $table) {
             $table->id();
             $table->string('main_menu');
+            $table->string('sort_manu')->nullable();
             $table->timestamps();
         });
     }

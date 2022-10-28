@@ -9,7 +9,19 @@
                     <div class="d-flex align-items-end row">
                         <div class="col-sm-12">
                             <div class="card-body">
-                                <h5 class="card-title text-primary">สินค้า 🎉 </h5>
+                                <h5 class="card-title text-primary">สินค้า 🎉 
+                                    <span style="float:right;">
+                                        <form action="{{url('/home')}}" method="post">
+                                            @csrf
+                                            <select name="search" id="sortBydate"  class="form-select form-select-lg" onchange="myFunction()">
+                                                <option value="AZ">เรียงลำดับ</option>
+                                                <option value="AZ">เรียงลำดับ A-Z</option>
+                                                <option value="ZA">เรียงลำดับ Z-A</option>
+                                            </select>
+                                            <button type="submit" style="display:none" id="search-post"><img src="../assets/img/core-img/search.png" alt=""></button>
+                                        </form>
+                                    </span>
+                                </h5>
                                 @php
                                     $i = 0;
                                 @endphp
@@ -111,4 +123,11 @@
                     </div>
                 </div>
             </div>
+            <script>
+
+                function myFunction() {
+                    console.log("888");
+                    $('#search-post').click(); 
+                }
+                </script>
         @endsection

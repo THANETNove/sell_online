@@ -9,6 +9,7 @@ class Main_Menu extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'main_menu'
+        'main_menu',
+        'sort_manu'
     ];
 }

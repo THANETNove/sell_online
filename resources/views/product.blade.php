@@ -126,7 +126,7 @@
                                     @endif
                                     <h5>{{ $product->product_name }}</h5>
                                     <!-- Ratings & Review -->
-                                    <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
+      {{--                               <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
                                         <div class="ratings">
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                             <i class="fa fa-star" aria-hidden="true"></i>
@@ -135,7 +135,7 @@
                                             <i class="fa fa-star" aria-hidden="true"></i>
                                         </div>
 
-                                    </div>
+                                    </div> --}}
                                     <!-- Avaiable -->
                                     <p class="avaibility"><i class="fa fa-circle"></i>
                                         @if ($product->status_product === 'new')
@@ -148,10 +148,10 @@
                                     </p>
                                 </div>
                                 <br>
-                                <div class="review">
+                            {{--  <div class="review">
                                     <span>{{ $product->main_menu }}<br>{{ $product->sub_menu }}</span>
                                 </div>
-
+                            --}}
                                 <div class="short_overview my-4">
                                     @if ($product->name_details !== null)
                                         <h6 style="color: #fbb710">รายละเอียดสินค้า</h6>

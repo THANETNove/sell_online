@@ -23,6 +23,7 @@
                                                     <tr>
                                                         <th>id</th>
                                                         <th>เมนูหลัก</th>
+                                                        <th style="text-align: center">ลำดับ</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
@@ -31,6 +32,22 @@
                                                         <tr>
                                                             <td> {{ ++$i }}</td>
                                                             <td>{{$menu->main_menu }}</td>
+                                                            <td>
+                                                                <form method="POST" action="{{url('update-sort_manu',$menu->id)}}">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <div class="row justify-content-md-center">
+                                                                        <div class="col-md-3">
+                                                                            <input id="main_menu" type="text" class="form-control  @error('main_menu') is-invalid @enderror" name="sort_manu" value="{{ $menu->sort_manu}}" required>
+                                                                        </div> 
+                                                                        <div class="col-md-2">
+                                                                            <button type="submit" class="btn btn-primary">
+                                                                                {{ __('บันทึก') }}
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </td>
                                                             <td>
                                                                 <div class="dropdown">
                                                                     <button type="button"

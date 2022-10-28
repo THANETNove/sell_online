@@ -46,11 +46,43 @@ Route::get('/', function () {
     return view('welcome',['products' => $products, 'images' => $images,'manu' => $manu]);
 });
 
+Route::post('/sort', function (Request $request) {
+   $sort =  $request->searchSort;
+   /*  dd($request->searchSort); */
+    $products = DB::table('add__products')
+    ->where('status_product','=','สินค้าขายดี');
+    if ($sort == "AZ") {
+        $products = $products->orderBy('add__products.product_name', 'ASC')
+        ->paginate(100);
+    }else{
+        $products = $products->orderBy('add__products.product_name', 'DESC')
+        ->paginate(100);
+    }
+   
+
+    $webName = DB::table('web__names')
+    ->get();
+    $img_home = DB::table('best_sellers')
+    ->get();
+    $webName  = $webName[0]->web_names;
+
+    $manu = DB::table('main__menus')
+    ->get();
+
+    $images = $img_home[0]->images;
+    $images = json_decode($images);
+
+
+    Session::put('web_name', $webName);
+    return view('welcome',['products' => $products, 'images' => $images,'manu' => $manu]);
+});
+
 
 /**
  * !  shop */
 Route::get('/shop', function () {
     $menus = DB::table('main__menus')
+    ->orderBy('sort_manu', 'ASC')
         ->get();
     $submenus = DB::table('sub__menus')
         ->get();
@@ -66,6 +98,7 @@ Route::get('/shop', function () {
 Route::get('/search/{name}', function ($name) {
 
     $menus = DB::table('main__menus')
+    ->orderBy('sort_manu', 'ASC')
         ->get();
     $submenus = DB::table('sub__menus')
         ->get();
@@ -76,7 +109,7 @@ Route::get('/search/{name}', function ($name) {
         ->orWhere('sub_menu', 'like', "$name%")
         ->orWhere('main_menu', 'like', "$name%")
         ->select('sub__menus.sub_menu','main__menus.main_menu','add__products.*')
-        ->orderBy('add__products.id', 'desc')
+       /*  ->orderBy('add__products.id', 'desc') */
         ->get();
 
     $catagories = DB::table('catagories')
@@ -86,20 +119,42 @@ Route::get('/search/{name}', function ($name) {
 
 Route::post('/search', function (Request $request) {
     $search =  $request->search;
-    if ($search === "date") {
-        $search = Carbon::now()->format('m');
-    }
+
+   /*  dd($search); */
+
 
     $menus = DB::table('main__menus')
+    ->orderBy('sort_manu', 'ASC')
         ->get();
     $submenus = DB::table('sub__menus')
         ->get();
 
     $products = DB::table('add__products')
         ->leftJoin('main__menus', 'add__products.id_main_menu', '=', 'main__menus.id')
-        ->leftJoin('sub__menus', 'add__products.id_sub_menu', '=', 'sub__menus.id')
-        ->whereMonth('add__products.created_at', "$search")
-        ->orWhere('main_menu', 'like', "$search%")
+        ->leftJoin('sub__menus', 'add__products.id_sub_menu', '=', 'sub__menus.id');
+        if ($search == "AZ") {
+            $products =  $products
+            ->select('sub__menus.sub_menu','main__menus.main_menu','add__products.*')
+            ->orderBy('add__products.product_name', 'ASC')
+            ->get();
+            # code...
+        }elseif($search == "ZA") {
+            $products =  $products
+            ->select('sub__menus.sub_menu','main__menus.main_menu','add__products.*')
+            ->orderBy('add__products.product_name', 'DESC')
+            ->get();
+        }else{
+            $products =  $products->orWhere('main_menu', 'like', "$search%")
+            ->orWhere('sub_menu', 'like', "$search%")
+            ->orWhere('product_name', 'like', "$search%")
+            ->orWhere('price', 'like', "$search%")
+            ->orWhere('price_discount', 'like', "$search%")
+            ->orWhere('status_product', 'like', "$search%")
+            ->select('sub__menus.sub_menu','main__menus.main_menu','add__products.*')
+            ->orderBy('add__products.product_name', 'ASC')
+            ->get();
+        }
+       /*  ->orWhere('main_menu', 'like', "$search%")
         ->orWhere('sub_menu', 'like', "$search%")
         ->orWhere('product_name', 'like', "$search%")
         ->orWhere('price', 'like', "$search%")
@@ -107,12 +162,14 @@ Route::post('/search', function (Request $request) {
         ->orWhere('status_product', 'like', "$search%")
         ->select('sub__menus.sub_menu','main__menus.main_menu','add__products.*')
         ->orderBy('add__products.id', 'desc')
-        ->get();
+        ->get(); */
     
     $catagories = DB::table('catagories')
             ->get();
     return view('shop',['menus' => $menus,'submenus'=> $submenus,'products' => $products,'catagories' => $catagories]); 
 });
+
+
 
 
 /**
@@ -146,6 +203,8 @@ Route::post('/new-main_menu',[ Main_MenuController::class,'store']);
 Route::get('/edit-main_menu/{id}',[ Main_MenuController::class,'edit']);
 Route::put('/update-main_menu/{id}',[ Main_MenuController::class,'update']);
 Route::get('/destroy-main_menu/{id}',[ Main_MenuController::class,'destroy']);
+Route::put('/update-sort_manu/{id}',[ Main_MenuController::class,'sort_manu']);
+
 Route::get('/sub-menu',[Sub_MenuController::class,'index']);
 Route::post('/sub-menu',[Sub_MenuController::class,'index']);
 Route::get('/create-sub-menu',[ Sub_MenuController::class,'create']);
@@ -162,6 +221,7 @@ Route::post('/add_product',[ AddProductController::class,'store']);
 Route::get('/edit-product/{id}',[ AddProductController::class,'edit']);
 Route::put('/update-product/{id}',[ AddProductController::class,'update']);
 Route::get('/destroy-product/{id}',[ AddProductController::class,'destroy']);
+
 
 Route::get('web-name',[ Web_NewController::class,'index']);
 Route::get('create-website-name',[ Web_NewController::class,'create']);
